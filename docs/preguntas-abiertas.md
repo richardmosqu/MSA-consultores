@@ -5,8 +5,7 @@ Actualizado: 30 oct 2026.
 ## Para nosotros (antes de enviar la cotización)
 
 - [ ] ¿A nombre de quién se emite la cotización y la factura? ¿Se cobra ITBMS?
-- [ ] ¿La tarifa base de ~US$30/h está bien o se ajustan los precios?
-- [ ] ¿La línea "Conexión con la agenda de Tilín" (US$700) va dentro de esta cotización o Tilín la cobra aparte?
+- [x] La conexión con Tilín va incluida sin costo (se muestra como valor agregado).
 - [ ] ¿Qué comisión por cobro tendrá MSA en Tilín?
 - [ ] Tilín: ¿habrá varios profesionales para "agendar con X" para diciembre? ¿El checkout y los correos saldrán en EN/PT/IT?
 

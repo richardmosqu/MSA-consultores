@@ -31,13 +31,15 @@ Más: política de privacidad y aviso de cookies (Ley 81 de 2019 de protección 
 
 ## 3. Stack propuesto
 
+Quién hace qué: la dirección del proyecto y la relación con MSA, Richard; diseño, desarrollo, contenido y despliegue, Claude Code.
+
 | Capa | Elección | Por qué |
 | --- | --- | --- |
 | Front | Next.js (App Router) + TypeScript + Tailwind | Mismo stack que Tilín; SSR/SSG para SEO y velocidad |
 | CMS / panel | Payload CMS (dentro del mismo Next.js) | Open source, sin licencias por usuario; localización por campo nativa (4 idiomas); bloques para el "builder" (Propuesta 3); vista previa en vivo, borradores, versiones, roles |
-| Base de datos | Postgres (Neon o Supabase) | Adapter oficial de Payload |
-| Archivos | S3 compatible / Vercel Blob | Fotos del equipo y del blog |
-| Hosting | Vercel | Deploy por rama, previews para que MSA revise |
+| Base de datos | Postgres en Railway | Adapter oficial de Payload; mismo proyecto de Railway |
+| Archivos | Almacenamiento S3 compatible (p. ej. Cloudflare R2) | Fotos del equipo y del blog |
+| Hosting | Railway | Un servicio para sitio + panel y otro para Postgres; entorno de prueba aparte para que MSA revise |
 | Correos | Resend | Formulario de contacto |
 | Analítica | GA4 + Search Console (+ Meta Pixel si lo piden) | |
 | Traducción asistida | Botón en el panel que genera borradores EN/PT/IT con la API de Claude | Hace sostenible un blog en 4 idiomas para un equipo pequeño (Propuesta 3) |
@@ -47,7 +49,7 @@ las páginas armadas por bloques, páginas nuevas, traducción con un clic y rol
 
 ## 4. Integración con Tilín (pendiente — se define más adelante)
 
-Decisión: **el motor de citas y cobros es Tilín**; no se construye un sistema de agenda dentro del sitio. El sitio se
+Decisión: **el motor de citas y cobros es Tilín**; no se construye un sistema de agenda dentro del sitio. La conexión va **incluida sin costo** en la cotización. El sitio se
 conecta por API con credenciales de cliente (client id / client secret). El detalle lo envía el equipo de Tilín.
 
 Lo que hoy tiene la Agenda de Tilín (FEATURES.md §17 del repo de Tilín) y aplica a MSA:

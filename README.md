@@ -9,10 +9,9 @@ anticipado (motor Tilín), WhatsApp y cuatro idiomas (ES · EN · PT · IT). Lan
 | Documento | Para qué |
 | --- | --- |
 | [docs/plan-del-proyecto.md](docs/plan-del-proyecto.md) | Brief de la reunión, alcance, mapa del sitio, stack propuesto y cronograma |
-| [docs/cotizacion-interna.md](docs/cotizacion-interna.md) | Horas detrás de cada precio, costos de terceros y supuestos de la cotización |
 | [docs/preguntas-abiertas.md](docs/preguntas-abiertas.md) | Dudas por resolver con el equipo y con MSA |
 
-La cotización para el cliente vive como documento compartible (Claude Docs), no en este repo.
+La cotización para el cliente y las notas de precios viven fuera de este repo: el código se entrega a MSA al final.
 
 ## Estado
 
