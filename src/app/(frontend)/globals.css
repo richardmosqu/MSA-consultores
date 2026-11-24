@@ -1,0 +1,184 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/montserrat';
+@import '@fontsource-variable/montserrat/wght-italic.css';
+@import '@fontsource/anton/400.css';
+@import '@fontsource-variable/playfair-display';
+
+/*
+  Identidad visual tomada de las redes de MSA:
+  azul noche profundo + azul eléctrico, titulares en mayúsculas gruesas con palabras
+  resaltadas, etiquetas tipo sticker, cortes diagonales y trama de puntos.
+*/
+@theme {
+  --color-ink: #030823;
+  --color-night: #050f3f;
+  --color-navy: #0a1a6e;
+  --color-navy-2: #11248f;
+  --color-electric: #1f5bff;
+  --color-electric-2: #3d74ff;
+  --color-sky: #1aa3ff;
+  --color-mist: #f1f4fb;
+  --color-line: #dde3f2;
+  --color-slate: #4a5578;
+  --color-haze: #b9c4e8;
+  --color-whatsapp: #25d366;
+
+  --font-sans: 'Montserrat Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Anton', 'Montserrat Variable', ui-sans-serif, sans-serif;
+  --font-serif: 'Playfair Display Variable', 'Times New Roman', serif;
+
+  --tracking-label: 0.28em;
+  --radius-pill: 999px;
+
+  --animate-rise: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Titular de la marca: mayúsculas, peso 900, interlineado apretado */
+@utility headline {
+  @apply font-sans font-black uppercase leading-[0.95] tracking-[-0.01em] text-balance;
+}
+
+@utility btn {
+  @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-[var(--radius-pill)] px-6 text-sm font-bold uppercase tracking-[0.08em] transition duration-200;
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+    font-feature-settings: 'lnum' 1;
+  }
+  ::selection {
+    @apply bg-electric text-white;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-sky;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10;
+  }
+
+  .headline-xl {
+    @apply headline text-[2.6rem] sm:text-6xl lg:text-7xl;
+  }
+  .headline-lg {
+    @apply headline text-3xl sm:text-5xl;
+  }
+  .headline-md {
+    @apply headline text-2xl sm:text-3xl;
+  }
+
+  /* — CONSULTORÍA QUE TE DA TRANQUILIDAD — */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[0.68rem] font-semibold uppercase tracking-[var(--tracking-label)];
+  }
+  .eyebrow::before,
+  .eyebrow::after {
+    content: '';
+    @apply h-px w-8 bg-current opacity-70;
+  }
+  .eyebrow-start::after {
+    display: none;
+  }
+
+  /* Badge celeste "MEET OUR TEAM" */
+  .badge {
+    @apply inline-block bg-sky px-3 py-1 text-[0.7rem] font-extrabold uppercase tracking-[0.22em] text-white;
+  }
+
+  /* Etiqueta tipo sticker: caja blanca, levemente girada */
+  .sticker {
+    @apply inline-block -rotate-2 bg-white px-3 py-1 font-sans font-black uppercase text-navy shadow-[0_8px_24px_-12px_rgba(3,8,35,0.6)];
+  }
+
+  .btn-primary {
+    @apply btn bg-electric text-white shadow-[0_12px_30px_-12px_rgba(31,91,255,0.9)] hover:bg-electric-2;
+  }
+  .btn-ghost-dark {
+    @apply btn border border-white/40 text-white hover:border-white hover:bg-white/10;
+  }
+  .btn-ghost-light {
+    @apply btn border border-navy/25 text-navy hover:border-navy hover:bg-navy/5;
+  }
+  .btn-whatsapp {
+    @apply btn bg-whatsapp text-ink hover:brightness-105;
+  }
+
+  /* Trama de puntos de las piezas de Instagram */
+  .dots {
+    background-image: radial-gradient(currentColor 1.2px, transparent 1.4px);
+    background-size: 14px 14px;
+  }
+
+  .surface-dark {
+    @apply bg-navy text-white;
+    background-image:
+      radial-gradient(120% 80% at 100% 0%, rgba(31, 91, 255, 0.35), transparent 60%),
+      radial-gradient(90% 70% at 0% 100%, rgba(3, 8, 35, 0.8), transparent 70%);
+  }
+
+  .prose-msa {
+    @apply max-w-none text-[1.02rem] leading-relaxed text-slate;
+  }
+  .prose-msa :where(h2) {
+    @apply mt-10 mb-3 font-black uppercase text-2xl leading-tight text-ink;
+  }
+  .prose-msa :where(h3) {
+    @apply mt-8 mb-2 font-extrabold text-xl text-ink;
+  }
+  .prose-msa :where(p) {
+    @apply my-4;
+  }
+  .prose-msa :where(ul) {
+    @apply my-4 list-disc pl-6;
+  }
+  .prose-msa :where(ol) {
+    @apply my-4 list-decimal pl-6;
+  }
+  .prose-msa :where(li) {
+    @apply my-1.5 marker:text-electric;
+  }
+  .prose-msa :where(a) {
+    @apply font-semibold text-electric underline underline-offset-4;
+  }
+  .prose-msa :where(strong) {
+    @apply font-bold text-ink;
+  }
+  .prose-msa :where(blockquote) {
+    @apply my-6 border-l-4 border-electric pl-5 font-semibold text-ink;
+  }
+  .on-dark .prose-msa,
+  .prose-msa.on-dark {
+    @apply text-haze;
+  }
+  .on-dark .prose-msa :where(h2, h3, strong, blockquote) {
+    @apply text-white;
+  }
+}

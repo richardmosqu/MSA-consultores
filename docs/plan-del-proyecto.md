@@ -1,6 +1,6 @@
 # Plan del proyecto — Sitio web MSA Consultores
 
-Actualizado: 30 oct 2026.
+Actualizado: 24 nov 2026 (arranque del desarrollo). Versión anterior: 30 oct 2026.
 
 ## 1. Brief (notas de la reunión, revisadas)
 
@@ -18,16 +18,36 @@ Actualizado: 30 oct 2026.
 | Propuestas | Separadas: creación / mantenimiento / builder ("ustedes pueden editar") | Propuesta 1 creación, 2 mantenimiento, 3 autogestión (editor por bloques) |
 | Fecha | Montada en diciembre | Lanzamiento 15 dic 2026, con colchón antes de las fiestas |
 
-## 2. Mapa del sitio (6 secciones)
+## 2. Mapa del sitio (según el Excel de MSA, 24 nov)
 
-1. **Inicio** — propuesta de valor, cifras, servicios destacados, testimonios, últimas publicaciones. CTA: agendar.
-2. **Nosotros** — historia (25+ años), misión, valores, cómo trabajamos.
-3. **Servicios** — listado + página por servicio con FAQ. CTA: agendar ese servicio.
-4. **Equipo** — perfiles: foto, cargo, especialidad, idiomas, LinkedIn. CTA: agendar con esa persona (*depende de Tilín, ver preguntas*).
-5. **Blog y actividades** — artículos, noticias y actividades con galería.
-6. **Contacto y citas** — agenda, formulario, WhatsApp, mapa, horario.
+El Excel "MSA WEBSITE — secciones y textos" ([docs/insumos](insumos/)) reemplaza el mapa de 6 secciones de la cotización.
+El alcance es el mismo; cambia la organización:
 
-Más: política de privacidad y aviso de cookies (Ley 81 de 2019 de protección de datos personales).
+1. **Inicio** — propuesta de valor, cifras, *agenda una consultoría según tu necesidad* (botones por departamento: Presidencia, Fiscal, RRHH, Legal, Finanzas), intro de la firma, áreas de trabajo, equipo, testimonios, últimas publicaciones. CTA: agendar / WhatsApp.
+2. **Nosotros** — historia, misión y visión, valores, presencia regional, cultura organizacional, filosofía de trabajo.
+3. **Equipo** — intro + grupos (Presidencia/VP, Gerencias, Consultores, RRHH, Legal, Compliance, Activos Productivos, Operaciones), cada uno con su descripción y perfiles con foto.
+4. **Servicios** — intro + 7 áreas (Fiscal y Tributario, Auditoría, Recursos Humanos, Legal Corporativo, Compliance, Activos Productivos, Finanzas y Consultoría Estratégica), cada una con su página y listado de servicios.
+5. **Casos de éxito** — intro, testimonios y casos.
+6. **Cultura MSA** — kickoffs, capacitaciones, eventos, actividades internas, crecimiento del equipo, experiencias corporativas + actividades publicadas.
+7. **Contacto** — agenda una consultoría / habla con un consultor / WhatsApp / contacta un departamento; oficina principal y presencia regional (Azuero, próximamente David, consultoría internacional).
+
+Más: **Blog** (alertas fiscales, artículos y actividades; el mismo motor alimenta Cultura MSA), política de privacidad y aviso
+de cookies (Ley 81 de 2019).
+
+**Navegación de servicios** (pedido de Richard, 24 nov): que se puedan explorar los servicios sin perderse. Menú desplegable
+con las 7 áreas en el header (acordeón en móvil), migas de pan, lista lateral de áreas en cada servicio (barra deslizable en
+móvil), "área anterior / siguiente", columna de servicios en el footer y botón de agendar siempre visible.
+
+## 2b. Dirección visual
+
+En lugar de dos direcciones desde cero (lo previsto en la semana 1), partimos de la identidad que MSA ya usa en Instagram, lo
+que ahorra una semana del cronograma:
+
+- Azul noche profundo + azul eléctrico, con celeste para etiquetas ("MEET OUR TEAM").
+- Titulares en mayúsculas muy gruesas con palabras destacadas en azul (en el panel: `*palabra*`).
+- Logotipo con serifa "MSA | Mateos Saint Malo & Asociados" (provisional hasta recibir el vector).
+- Cortes diagonales, trama de puntos, perfiles sobre fondo oscuro, línea de áreas al pie.
+- Secciones claras alternadas con oscuras para que los textos largos se lean bien.
 
 ## 3. Stack propuesto
 
@@ -68,18 +88,22 @@ Puntos a validar del lado de Tilín antes de cerrar el alcance de la conexión:
 
 ## 5. Cronograma
 
+### Ajuste al arranque real (24 nov)
+
+La aprobación y la firma llegaron el 24 nov, no el 6 nov. Para mantener el **lanzamiento del 15 dic** comprimimos así:
+la dirección visual sale de su identidad en redes (sin ronda de dos propuestas), y diseño y desarrollo van en paralelo
+sobre el sitio real en lugar de maquetas.
+
 | Semana | Fechas | Trabajo | Hito / dependencia de MSA |
 | --- | --- | --- | --- |
-| 0 | 2–6 nov | Arranque, insumos (semana corta: fiestas patrias) | Aprobación + anticipo (6 nov); Excel, fotos, marca (9 nov) |
-| 1 | 9–13 nov | Moodboard + 2 direcciones visuales | Elección de dirección (16 nov) |
-| 2 | 16–20 nov | Diseño de páginas (móvil + escritorio); setup técnico en paralelo | Servicios a agendar, KYB Tilín, WhatsApp (20 nov) |
-| 3 | 23–27 nov | Desarrollo de secciones + panel + i18n; conexión Tilín | Aprobación del diseño (23 nov); acceso al dominio (27 nov) |
-| 4 | 30 nov–4 dic | Desarrollo, conexión Tilín, WhatsApp, carga de contenido y traducciones | Revisión de textos y traducciones (4 dic) |
-| 5 | 7–11 dic | Sitio de prueba, QA en dispositivos, ajustes (8 dic feriado) | Revisión del sitio de prueba (11 dic) |
-| 6 | 14–18 dic | Capacitación y **lanzamiento 15 dic**; monitoreo | — |
+| 1 | 24–28 nov | ✅ Base técnica, panel, 4 idiomas, diseño aplicado, contenido del Excel cargado. Entorno de prueba en Railway | **Revisión del sitio de prueba v1** y respuesta a las [preguntas abiertas](preguntas-abiertas.md) (28 nov) |
+| 2 | 1–5 dic | Ajustes de diseño, contenido definitivo (servicios por área, perfiles, casos), traducciones EN/PT/IT, conexión con Tilín (o plan B), WhatsApp final | Fotos, logo en vector, listado de servicios, perfiles (2 dic); revisión de textos y traducciones (5 dic) |
+| 3 | 8–12 dic | QA en dispositivos, velocidad (Lighthouse ≥ 90), SEO, capacitación del panel, dominio (8 dic feriado) | Aprobación del sitio de prueba (11 dic); acceso al dominio (11 dic) |
+| 4 | 14–18 dic | **Lanzamiento 15 dic**; monitoreo | — |
 | — | 15 dic–14 ene | Garantía 30 días | Mantenimiento arranca ~15 ene 2027 |
 
-**Riesgo principal:** la conexión con Tilín depende de que su API (y los puntos de la sección 4) esté lista a fines de
-noviembre. Plan B para no mover el 15 dic: lanzar con los botones de "Agendar" enlazando a la página de reservas de
-MSA en Tilín (que ya soporta dominio propio, p. ej. `agenda.msaconsultores.com`) y activar la reserva dentro del sitio
-en enero.
+**Riesgos:**
+
+- **Insumos de MSA.** Con tres semanas, cada día de atraso en fotos, perfiles y listado de servicios se come el margen de QA. Si al 5 dic falta algo, se lanza con lo que haya (el panel permite completarlo después).
+- **Tilín.** La conexión depende de que su API (y los puntos de la sección 4) esté lista. Plan B sin mover el 15 dic: los botones de "Agendar" enlazan a la página de reservas de MSA en Tilín (por departamento si Tilín lo permite) y la reserva dentro del sitio se activa en enero. El sitio ya funciona así: es un cambio de ajuste en el panel.
+- **Traducciones PT/IT.** Necesitan quien las valide del lado de MSA antes del 5 dic.
