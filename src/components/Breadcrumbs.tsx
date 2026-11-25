@@ -18,8 +18,8 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
     })),
   }
   return (
-    <nav aria-label="Breadcrumb" className="mb-6">
-      <ol className="flex flex-wrap items-center gap-1.5 text-xs font-semibold text-haze">
+    <nav aria-label="Breadcrumb" className="mb-8">
+      <ol className="flex flex-wrap items-center gap-1.5 text-xs font-medium text-white/60">
         {items.map((c, i) => (
           <li key={i} className="flex items-center gap-1.5">
             {i > 0 && <Icon name="chevron" className="size-3 opacity-60" />}
@@ -28,7 +28,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
                 {c.label}
               </Link>
             ) : (
-              <span aria-current="page" className="text-white">
+              <span aria-current="page" className="text-white/90">
                 {c.label}
               </span>
             )}

@@ -31,16 +31,16 @@ export default async function ServicesPage({ params }: PageProps<'/[locale]/serv
         intro={dict.services.intro}
       />
       <ServicesBar links={site.serviceLinks} label={dict.common.serviceAreas} />
-      <section className="bg-white py-16 sm:py-24">
+      <section className="pt-6 pb-16 sm:pb-20">
         <div className="container-site">
           {services.length ? (
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((s) => (
                 <ServiceCard key={s.id} service={s} locale={site.locale} dict={dict} />
               ))}
             </div>
           ) : (
-            <p className="text-slate">{dict.services.empty}</p>
+            <p className="text-muted">{dict.services.empty}</p>
           )}
         </div>
       </section>
@@ -48,10 +48,10 @@ export default async function ServicesPage({ params }: PageProps<'/[locale]/serv
         site={site}
         block={{
           blockType: 'departments',
-          title: dict.contact.optionBook,
-          intro: dict.contact.optionBookText,
+          eyebrow: dict.contact.optionBook,
+          title: dict.contact.optionBookText,
           action: 'booking',
-          theme: 'dark',
+          theme: 'mist',
         }}
       />
     </>

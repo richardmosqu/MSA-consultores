@@ -1,40 +1,46 @@
 import { Breadcrumbs, type Crumb } from './Breadcrumbs'
-import { Dots, Shards } from './Decor'
 import { Highlight } from './Highlight'
 
-/** Cabecera de páginas internas (servicios, equipo, blog, contacto). */
+/** Cabecera de páginas internas: marco azul noche redondeado, sobrio. */
 export function PageHeader({
   eyebrow,
   title,
   intro,
-  badge,
   breadcrumbs,
   children,
 }: {
   eyebrow?: string | null
   title: string
   intro?: string | null
-  badge?: string
   breadcrumbs?: Crumb[]
   children?: React.ReactNode
 }) {
   return (
-    <section className="surface-dark on-dark relative isolate overflow-hidden">
-      <Shards className="-z-10" line />
-      <Dots className="top-20 left-0 h-48 w-48" />
-      <div className="container-site relative pt-32 pb-16 sm:pt-40 sm:pb-20">
-        <div className="max-w-4xl animate-rise">
-          {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
-          {badge && <span className="badge mb-6">{badge}</span>}
-          {eyebrow && <p className="eyebrow eyebrow-start mb-5 text-sky">{eyebrow}</p>}
-          <h1 className="headline-lg text-white">
-            <Highlight text={title} className="text-electric-2" />
-          </h1>
-          <span className="mt-6 block h-1 w-16 bg-electric" aria-hidden />
-          {intro && <p className="mt-6 max-w-2xl text-base leading-relaxed text-haze sm:text-lg">{intro}</p>}
-          {children}
+    <section className="pt-2 sm:pt-3">
+      <div className="frame on-dark relative isolate overflow-hidden bg-ink text-white">
+        <Glow />
+        <div className="container-site relative pt-32 pb-14 sm:pt-40 sm:pb-20">
+          <div className="max-w-3xl animate-rise">
+            {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
+            {eyebrow && <p className="pill-label-dark mb-5">{eyebrow}</p>}
+            <h1 className="display-lg text-white">
+              <Highlight text={title} dark />
+            </h1>
+            {intro && <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">{intro}</p>}
+            {children}
+          </div>
         </div>
       </div>
     </section>
+  )
+}
+
+/** Único recurso decorativo: un halo azul muy suave en la esquina. */
+export function Glow() {
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute -top-1/3 -right-1/4 -z-10 size-[70vmax] rounded-full bg-[radial-gradient(closest-side,rgba(36,84,245,0.35),transparent)]"
+    />
   )
 }

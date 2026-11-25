@@ -42,6 +42,43 @@ export const HeroBlock: Block = {
   ],
 }
 
+export const HighlightsBlock: Block = {
+  slug: 'highlights',
+  labels: { singular: 'Tarjetas destacadas', plural: 'Tarjetas destacadas' },
+  fields: [
+    {
+      name: 'items',
+      label: 'Tarjetas',
+      type: 'array',
+      minRows: 1,
+      maxRows: 3,
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            { name: 'label', label: 'Etiqueta', type: 'text', localized: true },
+            {
+              name: 'accent',
+              label: 'Tarjeta en azul',
+              type: 'checkbox',
+              defaultValue: false,
+            },
+          ],
+        },
+        { name: 'title', label: 'Título', type: 'text', localized: true, required: true },
+        {
+          name: 'text',
+          label: 'Texto (se muestra si no hay imagen)',
+          type: 'textarea',
+          localized: true,
+        },
+        { name: 'image', label: 'Imagen', type: 'upload', relationTo: 'media' },
+        linkField('link', 'Enlace'),
+      ],
+    },
+  ],
+}
+
 export const StatsBlock: Block = {
   slug: 'stats',
   labels: { singular: 'Cifras', plural: 'Cifras' },
@@ -252,6 +289,7 @@ export const CtaBlock: Block = {
 
 export const pageBlocks: Block[] = [
   HeroBlock,
+  HighlightsBlock,
   StatsBlock,
   ServicesGridBlock,
   DepartmentsBlock,

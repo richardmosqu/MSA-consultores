@@ -2,6 +2,10 @@ import { Highlight } from './Highlight'
 
 export type Theme = 'light' | 'dark' | 'mist'
 
+/**
+ * Sección. "light" = fondo blanco; "mist" = panel gris redondeado; "dark" = panel azul noche redondeado.
+ * Los paneles dejan un margen al borde de la pantalla, como el hero.
+ */
 export function Section({
   theme = 'light',
   className = '',
@@ -13,14 +17,19 @@ export function Section({
   id?: string
   children: React.ReactNode
 }) {
-  const bg =
-    theme === 'dark'
-      ? 'surface-dark on-dark relative overflow-hidden'
-      : theme === 'mist'
-        ? 'bg-mist'
-        : 'bg-white'
+  if (theme === 'mist' || theme === 'dark') {
+    return (
+      <section id={id} className={`py-3 ${className}`}>
+        <div
+          className={`frame py-16 sm:py-24 ${theme === 'dark' ? 'on-dark bg-ink text-white' : 'bg-surface'}`}
+        >
+          {children}
+        </div>
+      </section>
+    )
+  }
   return (
-    <section id={id} className={`${bg} py-16 sm:py-24 ${className}`}>
+    <section id={id} className={`py-16 sm:py-24 ${className}`}>
       {children}
     </section>
   )
@@ -31,30 +40,28 @@ export function SectionHeading({
   title,
   intro,
   dark = false,
-  align = 'left',
+  align = 'center',
+  className = '',
 }: {
   eyebrow?: string | null
   title?: string | null
   intro?: string | null
   dark?: boolean
   align?: 'left' | 'center'
+  className?: string
 }) {
   if (!eyebrow && !title && !intro) return null
   const center = align === 'center'
   return (
-    <div className={`mb-10 max-w-3xl sm:mb-14 ${center ? 'mx-auto text-center' : ''}`}>
-      {eyebrow && (
-        <p className={`eyebrow mb-4 ${dark ? 'text-sky' : 'text-electric'} ${center ? '' : 'eyebrow-start'}`}>
-          {eyebrow}
-        </p>
-      )}
+    <div className={`mb-10 max-w-3xl sm:mb-14 ${center ? 'mx-auto text-center' : ''} ${className}`}>
+      {eyebrow && <p className={`mb-5 ${dark ? 'pill-label-dark' : 'pill-label'}`}>{eyebrow}</p>}
       {title && (
-        <h2 className={`headline-lg ${dark ? 'text-white' : 'text-ink'}`}>
-          <Highlight text={title} className={dark ? 'text-sky' : 'text-electric'} />
+        <h2 className={`display-lg ${dark ? 'text-white' : 'text-ink'}`}>
+          <Highlight text={title} dark={dark} />
         </h2>
       )}
       {intro && (
-        <p className={`mt-5 text-base leading-relaxed sm:text-lg ${dark ? 'text-haze' : 'text-slate'}`}>{intro}</p>
+        <p className={`mt-5 text-base leading-relaxed sm:text-lg ${dark ? 'text-white/70' : 'text-muted'}`}>{intro}</p>
       )}
     </div>
   )

@@ -13,6 +13,7 @@ Actualizado: 24 nov 2026 (arranque del desarrollo, después de recibir el Excel 
 
 ## Para MSA — insumos pendientes (según las notas del Excel)
 
+- [ ] **Fotos para el diseño nuevo** (lo más urgente): una foto horizontal del equipo en la oficina para la portada, 2–3 fotos de ambiente (reuniones, oficina) para las tarjetas, y retratos individuales con fondo neutro. Mejor los originales en alta, no capturas de Instagram.
 - [ ] **Listado de servicios por área** (Nahi → corporativo). Cada área ya tiene su página; falta el detalle de "qué incluye".
 - [ ] **Perfiles del equipo**: bosquejo de perfiles (Nahi), perfil de Mateos (Mili), fotos pendientes (Mili). Hoy hay 5 perfiles provisionales tomados de "Meet our team" de Instagram, sin foto.
 - [ ] **Foto de todo el equipo** (Nahi) para la portada.

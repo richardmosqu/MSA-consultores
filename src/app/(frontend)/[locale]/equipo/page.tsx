@@ -35,23 +35,23 @@ export default async function TeamPage({ params }: PageProps<'/[locale]/equipo'>
     <>
       <PageHeader
         breadcrumbs={[{ href: `/${site.locale}`, label: dict.common.home }, { label: dict.nav.team }]}
-        badge={dict.team.badge}
+        eyebrow={dict.team.badge}
         title={dict.team.title}
         intro={dict.team.intro}
       />
-      <section className="bg-white py-16 sm:py-24">
+      <section className="py-16 sm:py-24">
         <div className="container-site space-y-20">
-          {groups.length === 0 && <p className="text-slate">{dict.team.empty}</p>}
+          {groups.length === 0 && <p className="text-muted">{dict.team.empty}</p>}
           {groups.map(({ group, people }) => (
             <div key={group?.id ?? 'none'}>
               {group && (
-                <div className="mb-8 grid gap-4 border-t-2 border-ink pt-6 lg:grid-cols-12">
-                  <h2 className="headline-md text-ink lg:col-span-4">{group.name}</h2>
-                  {group.description && <p className="leading-relaxed text-slate lg:col-span-8">{group.description}</p>}
+                <div className="mb-8 grid gap-4 lg:grid-cols-12">
+                  <h2 className="display-md text-ink lg:col-span-4">{group.name}</h2>
+                  {group.description && <p className="leading-relaxed text-muted lg:col-span-8">{group.description}</p>}
                 </div>
               )}
               {people.length > 0 && (
-                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="grid gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
                   {people.map((p) => (
                     <TeamCard key={p.id} person={p} dict={dict} />
                   ))}

@@ -54,10 +54,14 @@ export default async function ServicePage({ params }: PageProps<'/[locale]/servi
     <>
       <WhatsAppMessage message={waMessage} />
       <PageHeader breadcrumbs={crumbs} eyebrow={dict.common.serviceAreas} title={service.title} intro={service.summary}>
-        <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-9 flex flex-wrap items-center gap-3">
           <ButtonLink link={booking} label={dict.common.bookThisService} />
           {wa && (
-            <ButtonLink link={{ href: wa, external: true, kind: 'whatsapp' }} label={dict.common.writeWhatsApp} variant="whatsapp" />
+            <ButtonLink
+              link={{ href: wa, external: true, kind: 'whatsapp' }}
+              label={dict.common.writeWhatsApp}
+              variant="glass"
+            />
           )}
         </div>
       </PageHeader>
@@ -67,10 +71,10 @@ export default async function ServicePage({ params }: PageProps<'/[locale]/servi
         <ServicesBar links={site.serviceLinks} current={current} label={dict.common.serviceAreas} />
       </div>
 
-      <section className="bg-white py-14 sm:py-20">
-        <div className="container-site grid gap-12 lg:grid-cols-12">
+      <section className="py-10 sm:py-16">
+        <div className="container-site grid gap-10 lg:grid-cols-12">
           <aside className="hidden lg:col-span-4 lg:block xl:col-span-3">
-            <div className="sticky top-28 space-y-5">
+            <div className="sticky top-28">
               <ServicesSideNav
                 links={site.serviceLinks}
                 current={current}
@@ -82,43 +86,50 @@ export default async function ServicePage({ params }: PageProps<'/[locale]/servi
           </aside>
 
           {hasContent && (
-            <div className="lg:col-span-8 xl:col-span-5">
+            <div className="lg:col-span-8 xl:col-span-5 xl:pt-4">
               <RichText data={service.body} />
               {service.faq && service.faq.length > 0 && (
                 <div className="mt-14">
-                  <h2 className="headline-md mb-6 text-ink">{dict.common.faq}</h2>
+                  <h2 className="display-md mb-6 text-ink">{dict.common.faq}</h2>
                   <FaqList items={service.faq} />
                 </div>
               )}
             </div>
           )}
-          <div className={hasContent ? 'lg:col-span-8 lg:col-start-5 xl:col-span-4 xl:col-start-auto' : 'lg:col-span-8 xl:col-span-6'}>
+
+          <div
+            className={`space-y-4 ${
+              hasContent ? 'lg:col-span-8 lg:col-start-5 xl:col-span-4 xl:col-start-auto' : 'lg:col-span-8 xl:col-span-9'
+            }`}
+          >
             {service.features && service.features.length > 0 && (
-              <div className="rounded-2xl bg-mist p-7 sm:p-9">
-                <p className="eyebrow eyebrow-start mb-5 text-electric">{dict.common.whatWeDo}</p>
-                <ul className="space-y-4">
+              <div className="rounded-[24px] bg-surface p-7 sm:p-8">
+                <p className="pill-label">{dict.common.whatWeDo}</p>
+                <ul className="mt-6 space-y-4">
                   {service.features.map((f, i) => (
-                    <li key={f.id ?? i} className="flex gap-3 text-[0.95rem] font-semibold text-ink">
-                      <Icon name="compliance" className="size-5 shrink-0 text-electric" />
+                    <li key={f.id ?? i} className="flex gap-3 text-[0.95rem] text-ink">
+                      <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-accent text-white">
+                        <Icon name="chevron" className="size-3" strokeWidth={2.4} />
+                      </span>
                       {f.text}
                     </li>
                   ))}
                 </ul>
               </div>
             )}
-            <div className="surface-dark on-dark relative mt-6 overflow-hidden rounded-2xl p-7">
-              <p className="text-lg font-black uppercase leading-tight text-white">{dict.common.bookThisService}</p>
-              <p className="mt-2 text-sm leading-relaxed text-haze">{dict.contact.optionBookText}</p>
-              <div className="mt-6 flex flex-col gap-2">
-                <ButtonLink link={booking} label={dict.nav.book} />
+            <div className="on-dark rounded-[24px] bg-accent p-7 text-white sm:p-8">
+              <p className="font-display text-2xl leading-tight">{dict.common.bookThisService}</p>
+              <p className="mt-3 text-sm leading-relaxed text-white/80">{dict.contact.optionBookText}</p>
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                <ButtonLink link={booking} label={dict.nav.book} variant="light" />
                 {wa && (
-                  <ButtonLink link={{ href: wa, external: true, kind: 'whatsapp' }} label="WhatsApp" variant="whatsapp" />
+                  <ButtonLink link={{ href: wa, external: true, kind: 'whatsapp' }} label="WhatsApp" variant="glass" />
                 )}
               </div>
             </div>
           </div>
         </div>
-        <div className="container-site mt-16">
+        <div className="container-site mt-14">
           <ServicesPager
             links={site.serviceLinks}
             current={current}

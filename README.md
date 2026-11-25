@@ -16,7 +16,7 @@ La cotización y las notas de precios viven fuera de este repo: el código se en
 
 ## Stack
 
-- **Next.js 16** (App Router, TypeScript, Tailwind CSS 4) — front con páginas en caché (ISR) que se actualizan al publicar.
+- **Next.js 16** (App Router, TypeScript, Tailwind CSS 4, tipografías Outfit + Manrope) — front con páginas en caché (ISR) que se actualizan al publicar.
 - **Payload CMS 3** dentro del mismo Next.js — panel en `/admin`, localización por campo, borradores y versiones.
 - **Postgres** (Railway) · imágenes en **Cloudflare R2** (S3) · avisos del formulario con **Resend**.
 
@@ -101,7 +101,7 @@ desde `/admin` y queda como administrador. Después de desplegar en una base vac
 - [x] Plan, cotización y aprobación
 - [x] Insumos recibidos: identidad visual (Instagram) y Excel de secciones y textos
 - [x] Base técnica: Next.js + Payload, 4 idiomas, panel, builder, SEO, cookies (Ley 81), formulario, WhatsApp
-- [x] Diseño aplicado a partir de la identidad de MSA (azul noche + azul eléctrico, titulares en mayúsculas)
+- [x] Diseño sobrio (25 nov): paneles redondeados, titulares de peso regular, azul de MSA como único acento
 - [x] Contenido inicial del Excel cargado (español)
 - [ ] Entorno de prueba en Railway para que MSA revise
 - [ ] Insumos pendientes de MSA (ver [preguntas abiertas](docs/preguntas-abiertas.md))

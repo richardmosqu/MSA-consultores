@@ -75,6 +75,7 @@ const paths: Record<string, React.ReactNode> = {
     </>
   ),
   arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
+  arrowUpRight: <path d="M7 17 17 7M9 7h8v8" />,
   chevron: <path d="m9 6 6 6-6 6" />,
   chevronDown: <path d="m6 9 6 6 6-6" />,
   menu: <path d="M4 7h16M4 12h16M4 17h10" />,

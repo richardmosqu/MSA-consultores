@@ -197,6 +197,39 @@ export interface Page {
         | {
             items?:
               | {
+                  label?: string | null;
+                  accent?: boolean | null;
+                  title: string;
+                  text?: string | null;
+                  image?: (number | null) | Media;
+                  link?: {
+                    type?: ('booking' | 'whatsapp' | 'internal' | 'custom' | 'none') | null;
+                    label?: string | null;
+                    route?:
+                      | (
+                          | 'inicio'
+                          | 'nosotros'
+                          | 'equipo'
+                          | 'servicios'
+                          | 'casos-de-exito'
+                          | 'cultura-msa'
+                          | 'blog'
+                          | 'contacto'
+                          | 'privacidad'
+                        )
+                      | null;
+                    url?: string | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'highlights';
+          }
+        | {
+            items?:
+              | {
                   value: string;
                   label: string;
                   id?: string | null;
@@ -906,6 +939,30 @@ export interface PagesSelect<T extends boolean = true> {
                   };
               image?: T;
               size?: T;
+              id?: T;
+              blockName?: T;
+            };
+        highlights?:
+          | T
+          | {
+              items?:
+                | T
+                | {
+                    label?: T;
+                    accent?: T;
+                    title?: T;
+                    text?: T;
+                    image?: T;
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          label?: T;
+                          route?: T;
+                          url?: T;
+                        };
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

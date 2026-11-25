@@ -20,15 +20,15 @@ export function ContactForm({
 
   if (state.status === 'ok') {
     return (
-      <p role="status" className="rounded-2xl bg-electric/10 p-8 text-lg font-semibold text-navy">
+      <p role="status" className="rounded-[24px] bg-accent-soft p-8 font-display text-xl text-ink">
         {labels.success}
       </p>
     )
   }
 
   const input =
-    'w-full rounded-xl border border-line bg-white px-4 py-3.5 text-[0.95rem] text-ink placeholder:text-slate/60 focus:border-electric focus:outline-none focus:ring-2 focus:ring-electric/20'
-  const label = 'mb-1.5 block text-xs font-bold uppercase tracking-widest text-slate'
+    'w-full rounded-2xl border border-transparent bg-surface px-4 py-3.5 text-[0.95rem] text-ink placeholder:text-muted/60 focus:border-accent focus:bg-white focus:outline-none focus:ring-4 focus:ring-accent/10'
+  const label = 'mb-2 block text-sm font-medium text-ink'
 
   return (
     <form action={action} className="grid gap-5 sm:grid-cols-2" noValidate={false}>
@@ -79,11 +79,11 @@ export function ContactForm({
         </label>
         <textarea id="cf-message" name="message" required rows={5} className={input} />
       </div>
-      <label className="flex gap-3 text-sm leading-relaxed text-slate sm:col-span-2">
-        <input type="checkbox" name="consent" required className="mt-1 size-4 shrink-0 accent-electric" />
+      <label className="flex gap-3 text-sm leading-relaxed text-muted sm:col-span-2">
+        <input type="checkbox" name="consent" required className="mt-1 size-4 shrink-0 accent-accent" />
         <span>
           {labels.consent}{' '}
-          <Link href={privacyHref} className="font-semibold text-electric underline underline-offset-2">
+          <Link href={privacyHref} className="font-semibold text-accent underline underline-offset-2">
             ↗
           </Link>
         </span>
@@ -94,7 +94,7 @@ export function ContactForm({
         </p>
       )}
       <div className="sm:col-span-2">
-        <button type="submit" disabled={pending} className="btn-primary w-full sm:w-auto disabled:opacity-60">
+        <button type="submit" disabled={pending} className="btn-accent w-full sm:w-auto disabled:opacity-60">
           {pending ? labels.sending : labels.submit}
         </button>
       </div>

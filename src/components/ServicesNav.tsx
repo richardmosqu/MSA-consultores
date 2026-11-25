@@ -3,14 +3,14 @@ import type { ServiceLink } from '@/lib/site'
 import { Icon } from './Icon'
 
 /**
- * Barra de áreas fija bajo el header (móvil y escritorio): permite saltar entre servicios
- * sin volver al listado. El área actual queda marcada.
+ * Barra de áreas fija bajo el header: permite saltar entre servicios sin volver al listado.
+ * El área actual queda marcada.
  */
 export function ServicesBar({ links, current, label }: { links: ServiceLink[]; current?: string; label: string }) {
   return (
-    <nav aria-label={label} className="sticky top-18 z-30 border-b border-line bg-white/95 backdrop-blur lg:top-20">
+    <nav aria-label={label} className="sticky top-[4.75rem] z-30 py-3 sm:top-[5.5rem]">
       <div className="container-site">
-        <ul className="-mx-4 flex snap-x gap-2 overflow-x-auto px-4 py-3 [scrollbar-width:none] sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden">
+        <ul className="-mx-5 flex snap-x gap-2 overflow-x-auto px-5 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:px-0 [&::-webkit-scrollbar]:hidden">
           {links.map((l) => {
             const active = l.href === current
             return (
@@ -18,11 +18,15 @@ export function ServicesBar({ links, current, label }: { links: ServiceLink[]; c
                 <Link
                   href={l.href}
                   aria-current={active ? 'page' : undefined}
-                  className={`inline-flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wide transition ${
-                    active ? 'bg-navy text-white' : 'border border-line text-navy hover:border-electric hover:text-electric'
+                  className={`inline-flex items-center gap-2 rounded-full py-1.5 pr-4 pl-1.5 text-sm font-medium whitespace-nowrap shadow-[0_6px_20px_-12px_rgba(12,26,71,0.35)] transition ${
+                    active ? 'bg-ink text-white' : 'bg-white text-ink ring-1 ring-line hover:ring-accent'
                   }`}
                 >
-                  <Icon name={l.icon} className="size-4" />
+                  <span
+                    className={`grid size-7 place-items-center rounded-full ${active ? 'bg-white/15 text-white' : 'bg-accent-soft text-accent'}`}
+                  >
+                    <Icon name={l.icon} className="size-3.5" />
+                  </span>
                   {l.label}
                 </Link>
               </li>
@@ -49,9 +53,9 @@ export function ServicesSideNav({
   allLabel: string
 }) {
   return (
-    <nav aria-label={title} className="rounded-2xl border border-line p-3">
-      <p className="px-3 pt-2 pb-3 text-xs font-semibold uppercase tracking-widest text-slate">{title}</p>
-      <ul className="space-y-0.5">
+    <nav aria-label={title} className="rounded-[24px] bg-surface p-3">
+      <p className="px-3 pt-3 pb-4 text-xs font-semibold tracking-[0.12em] text-muted uppercase">{title}</p>
+      <ul className="space-y-1">
         {links.map((l) => {
           const active = l.href === current
           return (
@@ -59,20 +63,27 @@ export function ServicesSideNav({
               <Link
                 href={l.href}
                 aria-current={active ? 'page' : undefined}
-                className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-bold transition ${
-                  active ? 'bg-navy text-white' : 'text-ink hover:bg-mist hover:text-electric'
+                className={`flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium transition ${
+                  active ? 'bg-white text-ink shadow-[0_6px_20px_-12px_rgba(12,26,71,0.35)]' : 'text-ink/75 hover:bg-white/60 hover:text-ink'
                 }`}
               >
-                <Icon name={l.icon} className={`size-5 ${active ? 'text-sky' : 'text-electric'}`} />
+                <span
+                  className={`grid size-8 shrink-0 place-items-center rounded-full ${active ? 'bg-accent text-white' : 'bg-white text-accent'}`}
+                >
+                  <Icon name={l.icon} className="size-4" />
+                </span>
                 {l.label}
               </Link>
             </li>
           )
         })}
       </ul>
-      <Link href={allHref} className="mt-2 flex items-center gap-2 px-3 py-2.5 text-sm font-semibold text-navy hover:text-electric">
-        <Icon name="menu" className="size-4" />
+      <Link
+        href={allHref}
+        className="mt-2 flex items-center justify-between rounded-2xl px-3 py-3 text-sm font-semibold text-ink hover:bg-white/60"
+      >
         {allLabel}
+        <Icon name="arrowUpRight" className="size-4" />
       </Link>
     </nav>
   )
@@ -95,14 +106,14 @@ export function ServicesPager({
   const prev = links[(i - 1 + links.length) % links.length]
   const next = links[(i + 1) % links.length]
   return (
-    <nav aria-label="Servicios" className="grid gap-3 sm:grid-cols-2">
-      <Link href={prev.href} className="group rounded-2xl border border-line p-5 transition hover:border-electric">
-        <span className="text-xs font-semibold uppercase tracking-widest text-slate">← {prevLabel}</span>
-        <span className="mt-1 block font-black uppercase text-ink group-hover:text-electric">{prev.label}</span>
+    <nav aria-label={prevLabel + ' / ' + nextLabel} className="grid gap-3 sm:grid-cols-2">
+      <Link href={prev.href} className="group rounded-[22px] bg-surface p-6 transition hover:bg-[#eceff5]">
+        <span className="text-xs font-semibold tracking-[0.12em] text-muted uppercase">← {prevLabel}</span>
+        <span className="mt-2 block font-display text-xl text-ink">{prev.label}</span>
       </Link>
-      <Link href={next.href} className="group rounded-2xl border border-line p-5 text-right transition hover:border-electric">
-        <span className="text-xs font-semibold uppercase tracking-widest text-slate">{nextLabel} →</span>
-        <span className="mt-1 block font-black uppercase text-ink group-hover:text-electric">{next.label}</span>
+      <Link href={next.href} className="group rounded-[22px] bg-surface p-6 text-right transition hover:bg-[#eceff5]">
+        <span className="text-xs font-semibold tracking-[0.12em] text-muted uppercase">{nextLabel} →</span>
+        <span className="mt-2 block font-display text-xl text-ink">{next.label}</span>
       </Link>
     </nav>
   )

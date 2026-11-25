@@ -51,10 +51,10 @@ export function WhatsAppFloat({ label }: { label: string }) {
       className="group fixed right-4 bottom-4 z-40 flex items-center gap-3 sm:right-6 sm:bottom-6"
       data-track="whatsapp-float"
     >
-      <span className="pointer-events-none hidden translate-x-2 rounded-full bg-white px-4 py-2 text-xs font-bold text-ink opacity-0 shadow-lg transition group-hover:translate-x-0 group-hover:opacity-100 md:block">
+      <span className="pointer-events-none hidden translate-x-2 rounded-full bg-white px-4 py-2 text-xs font-semibold text-ink opacity-0 shadow-lg ring-1 ring-line transition group-hover:translate-x-0 group-hover:opacity-100 md:block">
         {label}
       </span>
-      <span className="grid size-14 place-items-center rounded-full bg-whatsapp text-ink shadow-[0_12px_30px_-8px_rgba(37,211,102,0.8)] transition group-hover:scale-105">
+      <span className="grid size-14 place-items-center rounded-full bg-whatsapp text-ink shadow-[0_12px_30px_-10px_rgba(12,26,71,0.45)] transition group-hover:scale-105">
         <Icon name="whatsapp" className="size-7" />
       </span>
     </a>

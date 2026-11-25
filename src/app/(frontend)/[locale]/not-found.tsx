@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Shards } from '@/components/Decor'
+import { Glow } from '@/components/PageHeader'
 import { defaultLocale, isLocale, type Locale } from '@/i18n/config'
 
 // Componente de cliente: si leyera headers() en el servidor, todas las páginas
@@ -35,15 +35,17 @@ export default function NotFound() {
   const locale = isLocale(maybe) ? maybe : defaultLocale
   const t = copy[locale]
   return (
-    <section className="surface-dark on-dark relative isolate flex min-h-[80svh] items-center overflow-hidden">
-      <Shards className="-z-10" line />
-      <div className="container-site pt-28 pb-20">
-        <p className="font-display text-8xl text-electric-2">404</p>
-        <h1 className="headline-lg mt-4 text-white">{t.title}</h1>
-        <p className="mt-5 max-w-xl text-lg text-haze">{t.text}</p>
-        <Link href={`/${locale}`} className="btn-primary mt-9">
-          {t.back}
-        </Link>
+    <section className="pt-2 sm:pt-3">
+      <div className="frame relative isolate flex min-h-[80svh] items-center overflow-hidden bg-ink text-white">
+        <Glow />
+        <div className="container-site pt-28 pb-20">
+          <p className="pill-label-dark">404</p>
+          <h1 className="display-lg mt-6">{t.title}</h1>
+          <p className="mt-5 max-w-xl text-lg text-white/70">{t.text}</p>
+          <Link href={`/${locale}`} className="btn-light mt-9">
+            {t.back}
+          </Link>
+        </div>
       </div>
     </section>
   )

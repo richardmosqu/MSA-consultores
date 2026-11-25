@@ -51,8 +51,8 @@ export function BlogFilterView({
             onClick={() => onSelect?.(cat.value)}
             className={`rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-widest transition ${
               cat.value === active
-                ? 'bg-navy text-white'
-                : 'border border-line text-navy hover:border-electric hover:text-electric'
+                ? 'bg-ink text-white'
+                : 'border border-line text-ink hover:border-accent hover:text-accent'
             }`}
           >
             {cat.label}
@@ -66,7 +66,7 @@ export function BlogFilterView({
           ))}
         </div>
       ) : (
-        <p className="rounded-2xl bg-mist p-10 text-center text-slate">{empty}</p>
+        <p className="rounded-2xl bg-surface p-10 text-center text-muted">{empty}</p>
       )}
     </>
   )

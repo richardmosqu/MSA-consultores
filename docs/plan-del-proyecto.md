@@ -38,16 +38,20 @@ de cookies (Ley 81 de 2019).
 con las 7 áreas en el header (acordeón en móvil), migas de pan, lista lateral de áreas en cada servicio (barra deslizable en
 móvil), "área anterior / siguiente", columna de servicios en el footer y botón de agendar siempre visible.
 
-## 2b. Dirección visual
+## 2b. Dirección visual (actualizada 25 nov)
 
-En lugar de dos direcciones desde cero (lo previsto en la semana 1), partimos de la identidad que MSA ya usa en Instagram, lo
-que ahorra una semana del cronograma:
+La primera propuesta (24 nov), muy cercana a las piezas de Instagram, se descartó por recargada. La dirección vigente sigue la
+referencia que compartió Richard (estilo "consultora sobria"):
 
-- Azul noche profundo + azul eléctrico, con celeste para etiquetas ("MEET OUR TEAM").
-- Titulares en mayúsculas muy gruesas con palabras destacadas en azul (en el panel: `*palabra*`).
-- Logotipo con serifa "MSA | Mateos Saint Malo & Asociados" (provisional hasta recibir el vector).
-- Cortes diagonales, trama de puntos, perfiles sobre fondo oscuro, línea de áreas al pie.
-- Secciones claras alternadas con oscuras para que los textos largos se lean bien.
+- Fondos claros y mucho aire; secciones en paneles redondeados gris claro o azul noche, con margen al borde de la pantalla.
+- Portada con **foto a sangre** dentro de un marco redondeado, el menú encima y accesos a las áreas de servicio al pie.
+- Titulares de **peso regular** en minúscula (Outfit), texto en Manrope; nada de mayúsculas gruesas.
+- Etiquetas tipo píldora ("QUIÉNES SOMOS"), botones píldora con **círculo y flecha ↗**, tarjetas con esquinas de 24 px.
+- **Un solo color de acento: el azul de MSA** (donde la referencia usa verde lima) sobre azul noche y blancos.
+- Se mantiene el logotipo con serifa de MSA (provisional hasta recibir el vector).
+
+La dirección depende de **fotos reales**: portada (equipo en la oficina), tarjetas de "Quiénes somos" y servicios, y perfiles.
+Sin fotos el sitio funciona y se ve ordenado, pero la portada queda como un panel azul liso.
 
 ## 3. Stack propuesto
 
@@ -96,7 +100,7 @@ sobre el sitio real en lugar de maquetas.
 
 | Semana | Fechas | Trabajo | Hito / dependencia de MSA |
 | --- | --- | --- | --- |
-| 1 | 24–28 nov | ✅ Base técnica, panel, 4 idiomas, diseño aplicado, contenido del Excel cargado. Entorno de prueba en Railway | **Revisión del sitio de prueba v1** y respuesta a las [preguntas abiertas](preguntas-abiertas.md) (28 nov) |
+| 1 | 24–28 nov | ✅ Base técnica, panel, 4 idiomas, contenido del Excel cargado. ✅ Rediseño sobrio (25 nov). Entorno de prueba en Railway | **Revisión del sitio de prueba v1** y respuesta a las [preguntas abiertas](preguntas-abiertas.md) (28 nov) |
 | 2 | 1–5 dic | Ajustes de diseño, contenido definitivo (servicios por área, perfiles, casos), traducciones EN/PT/IT, conexión con Tilín (o plan B), WhatsApp final | Fotos, logo en vector, listado de servicios, perfiles (2 dic); revisión de textos y traducciones (5 dic) |
 | 3 | 8–12 dic | QA en dispositivos, velocidad (Lighthouse ≥ 90), SEO, capacitación del panel, dominio (8 dic feriado) | Aprobación del sitio de prueba (11 dic); acceso al dominio (11 dic) |
 | 4 | 14–18 dic | **Lanzamiento 15 dic**; monitoreo | — |

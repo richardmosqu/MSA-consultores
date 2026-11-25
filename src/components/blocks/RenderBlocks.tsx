@@ -6,6 +6,7 @@ import {
   DepartmentsBlock,
   FaqBlock,
   FeaturesBlock,
+  HighlightsBlock,
   ImageTextBlock,
   LatestPostsBlock,
   ServicesGridBlock,
@@ -36,6 +37,8 @@ export function RenderBlocks({
             return (
               <HeroBlock key={key} block={block} site={site} first={i === 0} breadcrumbs={i === 0 ? breadcrumbs : undefined} />
             )
+          case 'highlights':
+            return <HighlightsBlock key={key} block={block} site={site} />
           case 'stats':
             return <StatsBlock key={key} block={block} />
           case 'servicesGrid':

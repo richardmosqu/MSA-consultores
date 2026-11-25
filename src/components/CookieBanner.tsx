@@ -68,19 +68,19 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
           role="dialog"
           aria-live="polite"
           aria-label="Cookies"
-          className="fixed inset-x-3 bottom-3 z-[60] mx-auto max-w-3xl rounded-2xl bg-ink p-5 text-sm text-white shadow-2xl ring-1 ring-white/10 sm:inset-x-6 sm:bottom-6 sm:flex sm:items-center sm:gap-6"
+          className="fixed inset-x-3 bottom-3 z-[60] mx-auto max-w-3xl rounded-[24px] bg-white p-5 text-sm text-ink shadow-[0_30px_60px_-20px_rgba(12,26,71,0.45)] ring-1 ring-line sm:inset-x-6 sm:bottom-6 sm:flex sm:items-center sm:gap-6"
         >
-          <p className="leading-relaxed text-haze">
+          <p className="leading-relaxed text-muted">
             {labels.text}{' '}
-            <Link href={privacyHref} className="font-semibold text-white underline underline-offset-4">
+            <Link href={privacyHref} className="font-semibold text-ink underline underline-offset-4">
               {labels.more}
             </Link>
           </p>
           <div className="mt-4 flex shrink-0 gap-2 sm:mt-0">
-            <button type="button" onClick={() => saveChoice('necessary')} className="btn-ghost-dark min-h-10 px-4 text-xs">
+            <button type="button" onClick={() => saveChoice('necessary')} className="btn-outline h-10 px-4 text-xs">
               {labels.reject}
             </button>
-            <button type="button" onClick={() => saveChoice('all')} className="btn-primary min-h-10 px-4 text-xs">
+            <button type="button" onClick={() => saveChoice('all')} className="btn-accent h-10 px-4 text-xs">
               {labels.accept}
             </button>
           </div>

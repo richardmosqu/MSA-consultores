@@ -53,33 +53,49 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
         intro={c.intro}
       />
 
-      <section className="relative z-10 -mt-10">
+      <section className="py-12 sm:py-16">
         <div className="container-site grid gap-4 md:grid-cols-3">
-          {options.map((o) => (
-            <div key={o.title} className="flex flex-col rounded-2xl bg-white p-7 shadow-[0_30px_60px_-35px_rgba(3,8,35,0.55)] ring-1 ring-line">
-              <Icon name={o.icon} className="size-8 text-electric" />
-              <h2 className="mt-5 text-lg font-black uppercase leading-tight text-ink">{o.title}</h2>
-              <p className="mt-2 mb-6 text-sm leading-relaxed text-slate">{o.text}</p>
-              <ButtonLink
-                link={o.link}
-                label={o.label}
-                variant={o.link.kind === 'whatsapp' ? 'whatsapp' : o.link.kind === 'booking' ? 'primary' : 'ghost-light'}
-                className="mt-auto"
-              />
-            </div>
-          ))}
+          {options.map((o, i) => {
+            const accent = i === 0
+            return (
+              <div
+                key={o.title}
+                className={`flex min-h-[260px] flex-col rounded-[24px] p-6 sm:p-7 ${accent ? 'on-dark bg-accent text-white' : 'bg-surface'}`}
+              >
+                <span className={`grid size-11 place-items-center rounded-full ${accent ? 'bg-white text-accent' : 'bg-accent text-white'}`}>
+                  <Icon name={o.icon} className="size-5" />
+                </span>
+                <h2 className={`mt-6 font-display text-xl leading-tight ${accent ? 'text-white' : 'text-ink'}`}>{o.title}</h2>
+                <p className={`mt-2 mb-7 text-sm leading-relaxed ${accent ? 'text-white/80' : 'text-muted'}`}>{o.text}</p>
+                <ButtonLink
+                  link={o.link}
+                  label={o.label}
+                  variant={accent ? 'light' : o.link.kind === 'whatsapp' ? 'whatsapp' : 'outline'}
+                  className="mt-auto"
+                />
+              </div>
+            )
+          })}
         </div>
       </section>
 
       <DepartmentsBlock
         site={site}
-        block={{ blockType: 'departments', title: c.departmentsTitle, intro: c.departmentsIntro, action: 'whatsapp', theme: 'light' }}
+        all
+        block={{
+          blockType: 'departments',
+          eyebrow: c.departmentsTitle,
+          title: c.departmentsIntro,
+          action: 'whatsapp',
+          theme: 'mist',
+        }}
       />
 
-      <section id="mensaje" className="scroll-mt-24 bg-mist py-16 sm:py-24">
-        <div className="container-site grid gap-14 lg:grid-cols-12">
+      <section id="mensaje" className="scroll-mt-28 py-16 sm:py-24">
+        <div className="container-site grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
-            <h2 className="headline-md mb-8 text-ink">{c.formTitle}</h2>
+            <p className="pill-label">{c.optionTalk}</p>
+            <h2 className="display-lg mt-5 mb-10 text-ink">{c.formTitle}</h2>
             <ContactForm
               locale={site.locale}
               labels={c.form}
@@ -88,18 +104,24 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
             />
           </div>
 
-          <aside className="space-y-8 lg:col-span-5">
-            <div className="rounded-2xl bg-navy p-8 text-white">
-              <p className="eyebrow eyebrow-start mb-5 text-sky">{settings.officeName || c.mainOffice}</p>
-              <dl className="space-y-5 text-sm">
+          <aside className="space-y-4 lg:col-span-5">
+            <div className="on-dark rounded-[24px] bg-ink p-7 text-white sm:p-8">
+              <p className="pill-label-dark">{c.infoTitle}</p>
+              <p className="mt-5 font-display text-xl leading-snug">{settings.officeName || c.mainOffice}</p>
+              <dl className="mt-6 space-y-4 text-sm text-white/75">
                 {settings.address && (
                   <div className="flex gap-3">
-                    <Icon name="pin" className="size-5 shrink-0 text-sky" />
+                    <Icon name="pin" className="mt-0.5 size-4.5 shrink-0 text-white" />
                     <div>
                       <dt className="sr-only">{c.address}</dt>
                       <dd className="whitespace-pre-line leading-relaxed">{settings.address}</dd>
                       {settings.mapsUrl && (
-                        <a href={settings.mapsUrl} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block font-semibold text-sky underline underline-offset-4">
+                        <a
+                          href={settings.mapsUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-2 inline-block font-semibold text-white underline underline-offset-4"
+                        >
                           {c.howToArrive}
                         </a>
                       )}
@@ -108,12 +130,12 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
                 )}
                 {settings.phones && settings.phones.length > 0 && (
                   <div className="flex gap-3">
-                    <Icon name="phone" className="size-5 shrink-0 text-sky" />
+                    <Icon name="phone" className="mt-0.5 size-4.5 shrink-0 text-white" />
                     <div>
                       <dt className="sr-only">{c.phone}</dt>
                       {settings.phones.map((p) => (
                         <dd key={p.id ?? p.number}>
-                          <a href={`tel:${p.number.replace(/[^\d+]/g, '')}`} className="hover:text-sky">
+                          <a href={`tel:${p.number.replace(/[^\d+]/g, '')}`} className="hover:text-white">
                             {p.number}
                           </a>
                         </dd>
@@ -123,11 +145,11 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
                 )}
                 {settings.email && (
                   <div className="flex gap-3">
-                    <Icon name="mail" className="size-5 shrink-0 text-sky" />
+                    <Icon name="mail" className="mt-0.5 size-4.5 shrink-0 text-white" />
                     <div>
                       <dt className="sr-only">{c.email}</dt>
                       <dd>
-                        <a href={`mailto:${settings.email}`} className="break-all hover:text-sky">
+                        <a href={`mailto:${settings.email}`} className="[overflow-wrap:anywhere] hover:text-white">
                           {settings.email}
                         </a>
                       </dd>
@@ -136,7 +158,7 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
                 )}
                 {settings.hours && (
                   <div className="flex gap-3">
-                    <Icon name="clock" className="size-5 shrink-0 text-sky" />
+                    <Icon name="clock" className="mt-0.5 size-4.5 shrink-0 text-white" />
                     <div>
                       <dt className="sr-only">{c.hours}</dt>
                       <dd>{settings.hours}</dd>
@@ -147,21 +169,25 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
             </div>
 
             {settings.offices && settings.offices.length > 0 && (
-              <div>
-                <p className="eyebrow eyebrow-start mb-5 text-electric">{c.regionalTitle}</p>
-                <ul className="space-y-4">
+              <div className="rounded-[24px] bg-surface p-7 sm:p-8">
+                <p className="pill-label">{c.regionalTitle}</p>
+                <ul className="mt-6 divide-y divide-line">
                   {settings.offices.map((o, i) => (
-                    <li key={o.id ?? i} className="rounded-2xl border border-line bg-white p-6">
-                      <p className="flex flex-wrap items-center gap-2 font-black uppercase text-ink">
+                    <li key={o.id ?? i} className="py-4 first:pt-0 last:pb-0">
+                      <p className="flex flex-wrap items-center gap-2 font-display text-lg text-ink">
                         {o.name}
-                        {o.status === 'soon' && <span className="badge !text-[0.6rem]">{c.soon}</span>}
+                        {o.status === 'soon' && (
+                          <span className="rounded-full bg-accent-soft px-2.5 py-0.5 font-sans text-[0.65rem] font-semibold text-accent uppercase">
+                            {c.soon}
+                          </span>
+                        )}
                         {o.status === 'international' && (
-                          <span className="rounded-full bg-navy px-2.5 py-0.5 text-[0.6rem] font-bold tracking-widest text-white">
+                          <span className="rounded-full bg-white px-2.5 py-0.5 font-sans text-[0.65rem] font-semibold text-muted uppercase ring-1 ring-line">
                             {c.international}
                           </span>
                         )}
                       </p>
-                      {o.text && <p className="mt-2 text-sm leading-relaxed text-slate">{o.text}</p>}
+                      {o.text && <p className="mt-1.5 text-sm leading-relaxed text-muted">{o.text}</p>}
                     </li>
                   ))}
                 </ul>

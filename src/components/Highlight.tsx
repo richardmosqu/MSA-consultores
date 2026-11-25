@@ -1,23 +1,20 @@
-// Convierte "Tu empresa en *orden*" en texto con la palabra resaltada en azul eléctrico,
-// el recurso tipográfico principal de las piezas de MSA.
-export function Highlight({
-  text,
-  className = 'text-electric',
-}: {
-  text?: string | null
-  className?: string
-}) {
+// "Tu empresa en *orden*": lo que va entre asteriscos se destaca.
+// Sobre fondo claro → azul de MSA. Sobre fondo oscuro → blanco pleno y el resto atenuado.
+export function Highlight({ text, dark = false }: { text?: string | null; dark?: boolean }) {
   if (!text) return null
   const parts = text.split(/(\*[^*]+\*)/g).filter(Boolean)
+  const hasHighlight = parts.some((p) => p.startsWith('*'))
   return (
     <>
       {parts.map((part, i) =>
         part.startsWith('*') && part.endsWith('*') ? (
-          <span key={i} className={className}>
+          <span key={i} className={dark ? 'text-white' : 'text-accent'}>
             {part.slice(1, -1)}
           </span>
         ) : (
-          <span key={i}>{part}</span>
+          <span key={i} className={dark && hasHighlight ? 'text-white/60' : undefined}>
+            {part}
+          </span>
         ),
       )}
     </>

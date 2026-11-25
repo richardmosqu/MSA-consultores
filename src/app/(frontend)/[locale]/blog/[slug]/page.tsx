@@ -57,7 +57,7 @@ export default async function PostPage({ params }: PageProps<'/[locale]/blog/[sl
         title={post.title}
         intro={post.excerpt}
       >
-        <p className="mt-6 text-sm text-haze">
+        <p className="mt-6 text-sm text-white/70">
           {date && (
             <>
               {dict.common.publishedOn} <time dateTime={post.publishedAt ?? undefined}>{date}</time>
@@ -86,7 +86,7 @@ export default async function PostPage({ params }: PageProps<'/[locale]/blog/[sl
 
           {gallery.length > 0 && (
             <div className="mt-14">
-              <h2 className="headline-md mb-6 text-ink">{dict.common.gallery}</h2>
+              <h2 className="display-md mb-6 text-ink">{dict.common.gallery}</h2>
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {gallery.map((m) => (
                   <div key={m.id} className="relative aspect-square overflow-hidden rounded-xl">
@@ -98,7 +98,7 @@ export default async function PostPage({ params }: PageProps<'/[locale]/blog/[sl
           )}
 
           {service && (
-            <div className="mt-14 flex flex-col items-start gap-5 rounded-2xl bg-mist p-7 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mt-14 flex flex-col items-start gap-5 rounded-2xl bg-surface p-7 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-lg font-black uppercase text-ink">{service.title}</p>
               <ButtonLink
                 link={bookingLink(site.settings, site.locale, service.bookingUrl)}
@@ -108,7 +108,7 @@ export default async function PostPage({ params }: PageProps<'/[locale]/blog/[sl
           )}
 
           <p className="mt-12">
-            <a href={href(site.locale, 'blog')} className="text-sm font-semibold text-navy hover:text-electric">
+            <a href={href(site.locale, 'blog')} className="text-sm font-semibold text-ink hover:text-accent">
               ← {dict.common.back}
             </a>
           </p>
