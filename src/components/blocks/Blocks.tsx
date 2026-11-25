@@ -36,7 +36,7 @@ export function HighlightsBlock({ block, site }: { block: Of<'highlights'>; site
                 {item.title}
               </h2>
               {hasMedia(item.image) ? (
-                <div className="relative mt-8 aspect-[4/3] overflow-hidden rounded-[18px]">
+                <div className="relative mt-8 aspect-[4/3] overflow-hidden rounded-card-sm">
                   <MediaImage media={item.image} size="card" sizes="(min-width: 768px) 33vw, 100vw" />
                 </div>
               ) : (
@@ -48,7 +48,7 @@ export function HighlightsBlock({ block, site }: { block: Of<'highlights'>; site
               )}
             </>
           )
-          const cls = `group flex min-h-[240px] flex-col rounded-[24px] p-6 transition duration-300 sm:p-7 md:min-h-[300px] ${
+          const cls = `group flex min-h-[240px] flex-col rounded-card p-6 transition duration-300 sm:p-7 md:min-h-[300px] ${
             accent ? 'on-dark bg-accent text-white hover:bg-accent-2' : 'bg-surface hover:bg-[#eceff5]'
           }`
           if (!link) return <div key={item.id ?? i} className={cls}>{body}</div>
@@ -98,9 +98,9 @@ export async function ServicesGridBlock({ block, site }: { block: Of<'servicesGr
               <li key={s.id}>
                 <Link
                   href={href(site.locale, 'servicios', s.slug ?? '')}
-                  className="group inline-flex items-center gap-2 rounded-full bg-white py-1.5 pr-4 pl-1.5 text-sm font-medium text-ink ring-1 ring-line hover:ring-accent"
+                  className="group inline-flex items-center gap-2 rounded-dot bg-white py-1.5 pr-4 pl-1.5 text-sm font-medium text-ink ring-1 ring-line hover:ring-accent"
                 >
-                  <span className="grid size-8 place-items-center rounded-full bg-accent-soft text-accent">
+                  <span className="grid size-8 place-items-center rounded-dot bg-accent-soft text-accent">
                     <Icon name={s.icon ?? 'shield'} className="size-4" />
                   </span>
                   {s.title}
@@ -115,7 +115,7 @@ export async function ServicesGridBlock({ block, site }: { block: Of<'servicesGr
             ))}
             <Link
               href={href(site.locale, 'servicios')}
-              className="group flex min-h-[220px] flex-col justify-between rounded-[24px] bg-ink p-6 text-white sm:p-7"
+              className="group flex min-h-[220px] flex-col justify-between rounded-card bg-ink p-6 text-white sm:p-7"
             >
               <span className="font-display text-xl leading-tight">{site.dict.common.allServices}</span>
               <CornerArrow dark className="self-end" />
@@ -162,14 +162,14 @@ export function DepartmentsBlock({
                 href={link.href}
                 {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 data-track={`department-${block.action}`}
-                className={`group flex min-h-[150px] flex-col justify-between rounded-[22px] p-5 transition duration-300 sm:p-6 ${
+                className={`group flex min-h-[150px] flex-col justify-between rounded-card p-5 transition duration-300 sm:p-6 ${
                   dark
                     ? 'bg-white/[0.06] hover:bg-white/[0.1]'
                     : `${block.theme === 'mist' ? 'bg-white' : 'bg-surface'} hover:bg-accent hover:text-white`
                 }`}
               >
                 <div className="flex items-start justify-between">
-                  <span className="grid size-10 place-items-center rounded-full bg-accent text-white transition group-hover:bg-white group-hover:text-accent">
+                  <span className="grid size-10 place-items-center rounded-dot bg-accent text-white transition group-hover:bg-white group-hover:text-accent">
                     <Icon name={block.action === 'whatsapp' ? 'whatsapp' : (d.icon ?? 'shield')} className="size-5" />
                   </span>
                   <Icon name="arrowUpRight" className="size-4 opacity-50 transition group-hover:rotate-45 group-hover:opacity-100" />
@@ -241,7 +241,7 @@ export function ImageTextBlock({ block, site }: { block: Of<'imageText'>; site: 
           <RichText data={block.body} />
           {button && <div className="mt-8">{button}</div>}
         </div>
-        <div className={`relative aspect-[4/3] overflow-hidden rounded-[24px] ${imageLeft ? 'lg:order-1' : ''}`}>
+        <div className={`relative aspect-[4/3] overflow-hidden rounded-card ${imageLeft ? 'lg:order-1' : ''}`}>
           <MediaImage media={block.image} size="card" sizes="(min-width: 1024px) 50vw, 100vw" />
         </div>
       </div>
@@ -261,9 +261,9 @@ export function FeaturesBlock({ block }: { block: Of<'features'> }) {
           {block.items.map((item, i) => (
             <div
               key={item.id ?? i}
-              className={`rounded-[24px] p-6 sm:p-8 ${dark ? 'bg-white/[0.06]' : block.theme === 'mist' ? 'bg-white' : 'bg-surface'}`}
+              className={`rounded-card p-6 sm:p-8 ${dark ? 'bg-white/[0.06]' : block.theme === 'mist' ? 'bg-white' : 'bg-surface'}`}
             >
-              <span className={`grid size-11 place-items-center rounded-full ${dark ? 'bg-white/10 text-white' : 'bg-accent-soft text-accent'}`}>
+              <span className={`grid size-11 place-items-center rounded-dot ${dark ? 'bg-white/10 text-white' : 'bg-accent-soft text-accent'}`}>
                 <Icon name={item.icon ?? 'shield'} className="size-5" />
               </span>
               <h3 className={`mt-6 font-display text-xl leading-tight ${dark ? 'text-white' : 'text-ink'}`}>{item.title}</h3>
@@ -360,7 +360,7 @@ export async function TestimonialsBlock({ block, site }: { block: Of<'testimonia
             typeof t === 'object' ? (
               <figure
                 key={t.id}
-                className={`flex flex-col rounded-[24px] p-7 sm:p-10 ${
+                className={`flex flex-col rounded-card p-7 sm:p-10 ${
                   dark ? 'bg-white/[0.06]' : block.theme === 'mist' ? 'bg-white' : 'bg-surface'
                 }`}
               >
@@ -370,7 +370,7 @@ export async function TestimonialsBlock({ block, site }: { block: Of<'testimonia
                 </blockquote>
                 <figcaption className="mt-auto flex items-center gap-4 pt-8">
                   {hasMedia(t.logo) && (
-                    <span className="relative size-12 overflow-hidden rounded-full bg-white ring-1 ring-line">
+                    <span className="relative size-12 overflow-hidden rounded-dot bg-white ring-1 ring-line">
                       <MediaImage media={t.logo} size="thumb" sizes="48px" className="!object-contain p-1.5" />
                     </span>
                   )}
@@ -417,12 +417,12 @@ export function FaqList({
   return (
     <div className="space-y-2">
       {items.map((item, i) => (
-        <details key={item.id ?? i} className={`group rounded-[20px] px-6 py-5 ${dark ? 'bg-white/[0.06]' : 'bg-surface'}`}>
+        <details key={item.id ?? i} className={`group rounded-card px-6 py-5 ${dark ? 'bg-white/[0.06]' : 'bg-surface'}`}>
           <summary
             className={`flex cursor-pointer list-none items-start justify-between gap-6 font-display text-lg [&::-webkit-details-marker]:hidden ${dark ? 'text-white' : 'text-ink'}`}
           >
             {item.question}
-            <span className="grid size-8 shrink-0 place-items-center rounded-full bg-white text-ink transition group-open:rotate-45">
+            <span className="grid size-8 shrink-0 place-items-center rounded-dot bg-white text-ink transition group-open:rotate-45">
               <Icon name="plus" className="size-4" />
             </span>
           </summary>

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { CookieBanner } from '@/components/CookieBanner'
+import { DesignSwitcher, designScript } from '@/components/DesignSwitcher'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { WhatsAppFloat, WhatsAppProvider } from '@/components/WhatsApp'
@@ -33,11 +34,19 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
   const { locale, dict, settings, nav, booking } = site
 
   return (
-    <html lang={localeTags[locale]}>
+    <html
+      lang={localeTags[locale]}
+      // Propuesta de diseño por defecto (variable NEXT_PUBLIC_DESIGN); en revisión se cambia con ?diseno=
+      data-design={process.env.NEXT_PUBLIC_DESIGN === 'editorial' ? 'editorial' : 'cercana'}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: designScript }} />
+      </head>
       <body>
         <a
           href="#contenido"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-ink"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-dot focus:bg-white focus:px-4 focus:py-2 focus:text-ink"
         >
           {dict.nav.skipToContent}
         </a>
@@ -62,6 +71,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
           <Footer locale={locale} dict={dict} settings={settings} nav={nav} services={site.serviceLinks} />
           <WhatsAppFloat label={dict.common.writeWhatsApp} />
         </WhatsAppProvider>
+        <DesignSwitcher />
         <CookieBanner gaId={settings.gaId} privacyHref={href(locale, 'privacidad')} labels={dict.cookies} />
       </body>
     </html>

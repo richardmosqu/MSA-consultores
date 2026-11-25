@@ -11,6 +11,7 @@ Lanzamiento objetivo: **15 de diciembre de 2026**.
 | [docs/plan-del-proyecto.md](docs/plan-del-proyecto.md) | Brief, alcance, mapa del sitio, stack y cronograma (actualizado al arranque) |
 | [docs/preguntas-abiertas.md](docs/preguntas-abiertas.md) | Dudas e insumos pendientes de MSA y de Tilín |
 | [docs/insumos/](docs/insumos/) | Archivos que envía MSA (Excel de secciones y textos) |
+| [docs/propuestas/](docs/propuestas/) | Las 3 propuestas de diseño (PDF para MSA) y cómo verlas en vivo |
 
 La cotización y las notas de precios viven fuera de este repo: el código se entrega a MSA al final.
 
@@ -101,7 +102,8 @@ desde `/admin` y queda como administrador. Después de desplegar en una base vac
 - [x] Plan, cotización y aprobación
 - [x] Insumos recibidos: identidad visual (Instagram) y Excel de secciones y textos
 - [x] Base técnica: Next.js + Payload, 4 idiomas, panel, builder, SEO, cookies (Ley 81), formulario, WhatsApp
-- [x] Diseño sobrio (25 nov): paneles redondeados, titulares de peso regular, azul de MSA como único acento
+- [x] Tres propuestas de diseño para MSA: A · Impacto, B · Cercana, C · Editorial ([docs/propuestas](docs/propuestas/))
+- [ ] MSA elige propuesta
 - [x] Contenido inicial del Excel cargado (español)
 - [ ] Entorno de prueba en Railway para que MSA revise
 - [ ] Insumos pendientes de MSA (ver [preguntas abiertas](docs/preguntas-abiertas.md))

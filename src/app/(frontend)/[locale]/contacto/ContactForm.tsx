@@ -20,14 +20,14 @@ export function ContactForm({
 
   if (state.status === 'ok') {
     return (
-      <p role="status" className="rounded-[24px] bg-accent-soft p-8 font-display text-xl text-ink">
+      <p role="status" className="rounded-card bg-accent-soft p-8 font-display text-xl text-ink">
         {labels.success}
       </p>
     )
   }
 
   const input =
-    'w-full rounded-2xl border border-transparent bg-surface px-4 py-3.5 text-[0.95rem] text-ink placeholder:text-muted/60 focus:border-accent focus:bg-white focus:outline-none focus:ring-4 focus:ring-accent/10'
+    'w-full rounded-ui border border-transparent bg-surface px-4 py-3.5 text-[0.95rem] text-ink placeholder:text-muted/60 focus:border-accent focus:bg-white focus:outline-none focus:ring-4 focus:ring-accent/10'
   const label = 'mb-2 block text-sm font-medium text-ink'
 
   return (
@@ -89,7 +89,7 @@ export function ContactForm({
         </span>
       </label>
       {(state.status === 'error' || state.status === 'invalid') && (
-        <p role="alert" className="rounded-xl bg-red-50 p-4 text-sm font-semibold text-red-700 sm:col-span-2">
+        <p role="alert" className="rounded-ui bg-red-50 p-4 text-sm font-semibold text-red-700 sm:col-span-2">
           {state.status === 'invalid' ? labels.required : labels.error}
         </p>
       )}

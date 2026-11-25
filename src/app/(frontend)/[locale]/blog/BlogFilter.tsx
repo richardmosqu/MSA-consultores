@@ -49,7 +49,7 @@ export function BlogFilterView({
             role="tab"
             aria-selected={cat.value === active}
             onClick={() => onSelect?.(cat.value)}
-            className={`rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-widest transition ${
+            className={`rounded-dot px-5 py-2.5 text-xs font-bold uppercase tracking-widest transition ${
               cat.value === active
                 ? 'bg-ink text-white'
                 : 'border border-line text-ink hover:border-accent hover:text-accent'
@@ -66,7 +66,7 @@ export function BlogFilterView({
           ))}
         </div>
       ) : (
-        <p className="rounded-2xl bg-surface p-10 text-center text-muted">{empty}</p>
+        <p className="rounded-ui bg-surface p-10 text-center text-muted">{empty}</p>
       )}
     </>
   )

@@ -2,11 +2,15 @@
 @import '@fontsource-variable/manrope';
 @import '@fontsource-variable/outfit';
 @import '@fontsource-variable/playfair-display';
+@import '@fontsource-variable/playfair-display/wght-italic.css';
 
 /*
-  Dirección visual "sobria" (25 nov): fondos claros, marcos y tarjetas redondeadas,
-  etiquetas tipo píldora, botones circulares con flecha y titulares de peso regular.
-  Un solo color de acento: el azul de MSA.
+  Tres propuestas de diseño para MSA (ver docs/propuestas):
+    A · Impacto    → commit 94884be (no vive en este código)
+    B · Cercana    → por defecto: marcos y tarjetas redondeadas, Outfit, azul de MSA como acento
+    C · Editorial  → <html data-design="editorial">: serif, esquinas rectas, líneas finas, papel cálido
+  Los componentes usan tokens (rounded-card, rounded-dot, bg-surface, font-display…);
+  cada propuesta solo cambia los valores.
 */
 @theme {
   --color-ink: #0c1a47;
@@ -17,7 +21,13 @@
   --color-surface: #f3f5f9;
   --color-line: #e1e6ef;
   --color-muted: #5b6580;
+  --color-paper: #ffffff;
   --color-whatsapp: #25d366;
+
+  --radius-card: 24px;
+  --radius-card-sm: 18px;
+  --radius-ui: 16px;
+  --radius-dot: 9999px;
 
   --font-sans: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Outfit Variable', 'Manrope Variable', ui-sans-serif, sans-serif;
@@ -38,7 +48,7 @@
 
 /* Botón en forma de píldora */
 @utility btn {
-  @apply inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-sm font-semibold whitespace-nowrap transition duration-200;
+  @apply inline-flex h-12 items-center justify-center gap-2 rounded-dot px-6 text-sm font-semibold whitespace-nowrap transition duration-200;
 }
 
 /* Titulares: Outfit, peso regular, interlineado corto */
@@ -52,7 +62,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-white font-sans text-ink antialiased;
+    @apply bg-paper font-sans text-ink antialiased;
   }
   ::selection {
     @apply bg-accent text-white;
@@ -80,7 +90,22 @@
 
   /* Marco redondeado con margen al borde de la pantalla (hero, paneles, footer) */
   .frame {
-    @apply mx-2 rounded-[22px] sm:mx-3 sm:rounded-[28px];
+    @apply mx-2 rounded-card sm:mx-3;
+  }
+
+  /* Header: barra flotante redondeada (B) */
+  .header-wrap {
+    @apply px-2 pt-2 sm:px-3 sm:pt-3;
+  }
+  .header-bar,
+  .header-panel {
+    @apply mx-auto max-w-[calc(80rem+2rem)];
+  }
+  .header-bar {
+    @apply rounded-dot;
+  }
+  .header-bar.is-solid {
+    @apply shadow-[0_12px_40px_-20px_rgba(12,26,71,0.45)];
   }
 
   .display-xl {
@@ -95,10 +120,10 @@
 
   /* Etiqueta pequeña: "QUIÉNES SOMOS" */
   .pill-label {
-    @apply inline-flex items-center rounded-full border border-line bg-white px-3 py-1 text-[0.65rem] font-semibold tracking-[0.12em] text-muted uppercase;
+    @apply inline-flex items-center rounded-dot border border-line bg-white px-3 py-1 text-[0.65rem] font-semibold tracking-[0.12em] text-muted uppercase;
   }
   .pill-label-dark {
-    @apply inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[0.65rem] font-semibold tracking-[0.12em] text-white/85 uppercase backdrop-blur;
+    @apply inline-flex items-center rounded-dot border border-white/20 bg-white/10 px-3 py-1 text-[0.65rem] font-semibold tracking-[0.12em] text-white/85 uppercase backdrop-blur;
   }
 
   .btn-accent {
@@ -119,11 +144,11 @@
 
   /* Círculo con flecha que acompaña botones y tarjetas */
   .arrow-circle {
-    @apply grid size-11 shrink-0 place-items-center rounded-full transition duration-200;
+    @apply grid size-11 shrink-0 place-items-center rounded-dot transition duration-200;
   }
 
   .icon-badge {
-    @apply grid size-12 shrink-0 place-items-center rounded-full bg-accent text-white;
+    @apply grid size-12 shrink-0 place-items-center rounded-dot bg-accent text-white;
   }
 
   .prose-msa {
@@ -162,4 +187,144 @@
   .on-dark .prose-msa :where(h2, h3, strong, blockquote) {
     @apply text-white;
   }
+}
+
+/* ───────────────────────── Propuesta C · Editorial ─────────────────────────
+   Serif en titulares (eco del logotipo), esquinas rectas, líneas finas,
+   fondo papel y secciones numeradas. Mismo contenido y misma navegación.
+   Estas reglas van fuera de las capas (@layer) para poder pisar las utilidades de Tailwind. */
+[data-design='editorial'] {
+  --color-ink: #0b1640;
+  --color-accent: #1f4fd8;
+  --color-accent-2: #173db0;
+  --color-accent-soft: #e7ebf6;
+  --color-surface: #f2efe8;
+  --color-line: #d9d4c8;
+  --color-muted: #5a5e6e;
+  --color-paper: #fbfaf7;
+  --font-display: 'Playfair Display Variable', 'Times New Roman', serif;
+  --radius-card: 0px;
+  --radius-card-sm: 0px;
+  --radius-ui: 0px;
+  --radius-dot: 0px;
+}
+
+[data-design='editorial'] .display,
+[data-design='editorial'] .display-xl,
+[data-design='editorial'] .display-lg,
+[data-design='editorial'] .display-md {
+  letter-spacing: -0.01em;
+}
+[data-design='editorial'] .display-xl {
+  @apply text-[2.7rem] leading-[1.02] sm:text-6xl lg:text-[4.6rem];
+}
+/* Palabras destacadas en cursiva, sin atenuar el resto */
+[data-design='editorial'] .hl {
+  font-style: italic;
+}
+[data-design='editorial'] .hl-dim {
+  color: inherit;
+}
+
+/* Marcos a sangre, sin margen ni esquinas */
+[data-design='editorial'] .frame {
+  @apply mx-0;
+}
+
+/* Header a todo el ancho, con línea fina al bajar */
+[data-design='editorial'] .header-wrap {
+  @apply p-0;
+}
+[data-design='editorial'] .header-bar,
+[data-design='editorial'] .header-panel {
+  @apply max-w-none;
+}
+[data-design='editorial'] .header-bar {
+  @apply px-5 sm:h-20 sm:px-10;
+}
+[data-design='editorial'] .header-bar.is-solid {
+  @apply border-b border-line shadow-none;
+}
+[data-design='editorial'] .header-panel {
+  @apply mt-0 border-b border-line shadow-none ring-0;
+}
+
+/* Etiquetas: texto en mayúsculas con raya, sin píldora */
+[data-design='editorial'] .pill-label,
+[data-design='editorial'] .pill-label-dark {
+  @apply gap-3 border-0 bg-transparent p-0 tracking-[0.18em] backdrop-blur-none;
+}
+[data-design='editorial'] .pill-label {
+  @apply text-accent;
+}
+[data-design='editorial'] .pill-label::before,
+[data-design='editorial'] .pill-label-dark::before {
+  content: '';
+  @apply h-px w-6 bg-current;
+}
+
+/* Secciones numeradas: 01, 02, 03… */
+[data-design='editorial'] main {
+  counter-reset: seccion;
+}
+[data-design='editorial'] .section-label::before {
+  counter-increment: seccion;
+  content: counter(seccion, decimal-leading-zero);
+  @apply h-auto w-auto bg-transparent font-display text-base tracking-normal italic;
+}
+
+/* Botones rectos, en mayúsculas finas */
+[data-design='editorial'] .btn {
+  @apply h-12 px-7 text-[0.78rem] tracking-[0.12em] uppercase;
+}
+[data-design='editorial'] .arrow-circle {
+  @apply size-12;
+}
+
+/* Tarjetas: línea fina en lugar de sombra */
+[data-design='editorial'] .bg-surface {
+  box-shadow: inset 0 0 0 1px var(--color-line);
+}
+
+/* C · Editorial: portada clara tipo revista (papel, texto azul noche). La foto, si la hay,
+   pasa a ser una banda ancha bajo el título en lugar del fondo. */
+[data-design='editorial'] .hero-frame {
+  @apply border-b border-line bg-paper text-ink;
+}
+[data-design='editorial'] .hero-frame .glow,
+[data-design='editorial'] .hero-frame .hero-overlay {
+  display: none;
+}
+[data-design='editorial'] .hero-frame .hero-media {
+  @apply relative inset-auto z-0 order-3 mx-5 mb-8 aspect-[21/9] overflow-hidden sm:mx-10;
+}
+[data-design='editorial'] .hero-frame .hl {
+  @apply text-accent;
+}
+[data-design='editorial'] .hero-frame .text-white\/75,
+[data-design='editorial'] .hero-frame .text-white\/70,
+[data-design='editorial'] .hero-frame .text-white\/60 {
+  @apply text-muted;
+}
+[data-design='editorial'] .hero-frame .text-white,
+[data-design='editorial'] .hero-frame .text-white\/90 {
+  @apply text-ink;
+}
+[data-design='editorial'] .hero-frame .pill-label-dark {
+  @apply text-accent;
+}
+[data-design='editorial'] .hero-frame .btn-glass {
+  @apply border-line bg-transparent text-ink backdrop-blur-none hover:border-ink hover:bg-transparent;
+}
+[data-design='editorial'] .hero-frame .arrow-circle.bg-white\/10 {
+  @apply border-line bg-transparent text-ink;
+}
+[data-design='editorial'] .hero-shortcuts a {
+  @apply bg-transparent text-ink ring-1 ring-line backdrop-blur-none hover:bg-surface;
+}
+[data-design='editorial'] .hero-shortcuts li:first-child a {
+  @apply bg-ink text-white ring-ink;
+}
+[data-design='editorial'] .hero-content {
+  @apply pt-36 sm:pt-44;
 }

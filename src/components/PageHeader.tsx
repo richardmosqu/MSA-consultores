@@ -17,7 +17,7 @@ export function PageHeader({
 }) {
   return (
     <section className="pt-2 sm:pt-3">
-      <div className="frame on-dark relative isolate overflow-hidden bg-ink text-white">
+      <div className="hero-frame frame on-dark relative isolate overflow-hidden bg-ink text-white">
         <Glow />
         <div className="container-site relative pt-32 pb-14 sm:pt-40 sm:pb-20">
           <div className="max-w-3xl animate-rise">
@@ -40,7 +40,7 @@ export function Glow() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute -top-1/3 -right-1/4 -z-10 size-[70vmax] rounded-full bg-[radial-gradient(closest-side,rgba(36,84,245,0.35),transparent)]"
+      className="glow pointer-events-none absolute -top-1/3 -right-1/4 -z-10 size-[70vmax] rounded-dot bg-[radial-gradient(closest-side,rgba(36,84,245,0.35),transparent)]"
     />
   )
 }

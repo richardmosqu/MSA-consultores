@@ -36,22 +36,22 @@ export function HeroBlock({
   return (
     <section className="pt-2 sm:pt-3">
       <div
-        className={`frame on-dark relative isolate flex flex-col overflow-hidden bg-ink text-white ${
+        className={`hero-frame frame on-dark relative isolate flex flex-col overflow-hidden bg-ink text-white ${
           large ? 'min-h-[640px] lg:min-h-[calc(100svh-1.5rem)]' : ''
         }`}
       >
         {withImage ? (
-          <div className="absolute inset-0 -z-10">
+          <div className="hero-media absolute inset-0 -z-10">
             <MediaImage media={block.image} size="wide" priority={first} />
-            <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/45 to-ink/5" />
-            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/70 to-transparent" />
+            <div className="hero-overlay absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/45 to-ink/5" />
+            <div className="hero-overlay absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/70 to-transparent" />
           </div>
         ) : (
           <Glow />
         )}
 
         <div
-          className={`container-site relative flex flex-1 flex-col justify-center ${
+          className={`hero-content container-site relative flex flex-1 flex-col justify-center ${
             large ? 'pt-32 pb-10 sm:pt-36' : 'pt-32 pb-14 sm:pt-40 sm:pb-20'
           }`}
         >
@@ -81,13 +81,13 @@ export function HeroBlock({
         </div>
 
         {shortcuts.length > 0 && (
-          <nav aria-label={site.dict.common.serviceAreas} className="container-site relative pb-5 sm:pb-8">
+          <nav aria-label={site.dict.common.serviceAreas} className="hero-shortcuts container-site relative pb-5 sm:pb-8">
             <ul className="-mx-5 flex gap-3 overflow-x-auto px-5 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-3 sm:px-0 [&::-webkit-scrollbar]:hidden">
               {shortcuts.map((s, i) => (
                 <li key={s.href} className="min-w-[78%] sm:min-w-0">
                   <Link
                     href={s.href}
-                    className={`group flex h-14 items-center justify-between rounded-2xl px-5 text-[0.7rem] font-semibold tracking-[0.12em] uppercase backdrop-blur transition ${
+                    className={`group flex h-14 items-center justify-between rounded-ui px-5 text-[0.7rem] font-semibold tracking-[0.12em] uppercase backdrop-blur transition ${
                       i === 0 ? 'bg-white text-ink' : 'bg-white/12 text-white/90 ring-1 ring-white/15 hover:bg-white/20'
                     }`}
                   >

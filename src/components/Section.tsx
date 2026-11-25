@@ -54,7 +54,7 @@ export function SectionHeading({
   const center = align === 'center'
   return (
     <div className={`mb-10 max-w-3xl sm:mb-14 ${center ? 'mx-auto text-center' : ''} ${className}`}>
-      {eyebrow && <p className={`mb-5 ${dark ? 'pill-label-dark' : 'pill-label'}`}>{eyebrow}</p>}
+      {eyebrow && <p className={`section-label mb-5 ${dark ? 'pill-label-dark' : 'pill-label'}`}>{eyebrow}</p>}
       {title && (
         <h2 className={`display-lg ${dark ? 'text-white' : 'text-ink'}`}>
           <Highlight text={title} dark={dark} />

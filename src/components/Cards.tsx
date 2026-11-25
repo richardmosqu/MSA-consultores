@@ -11,7 +11,7 @@ export function ServiceCard({ service, locale, dict }: { service: Service; local
   const link = href(locale, 'servicios', service.slug ?? '')
   if (hasMedia(service.image)) {
     return (
-      <Link href={link} className="group relative flex aspect-[4/5] flex-col overflow-hidden rounded-[24px] bg-ink">
+      <Link href={link} className="group relative flex aspect-[4/5] flex-col overflow-hidden rounded-card bg-ink">
         <MediaImage
           media={service.image}
           size="portrait"
@@ -32,7 +32,7 @@ export function ServiceCard({ service, locale, dict }: { service: Service; local
   return (
     <Link
       href={link}
-      className="group flex h-full flex-col rounded-[24px] bg-white p-6 ring-1 ring-line transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-30px_rgba(12,26,71,0.35)] sm:p-7"
+      className="group flex h-full flex-col rounded-card bg-white p-6 ring-1 ring-line transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-30px_rgba(12,26,71,0.35)] sm:p-7"
     >
       <div className="flex items-start justify-between">
         <span className="icon-badge">
@@ -59,7 +59,7 @@ const initials = (name: string) =>
 export function TeamCard({ person, dict }: { person: Team; dict: Dictionary }) {
   return (
     <article className="group">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-surface">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-card bg-surface">
         {hasMedia(person.photo) ? (
           <MediaImage
             media={person.photo}
@@ -69,7 +69,7 @@ export function TeamCard({ person, dict }: { person: Team; dict: Dictionary }) {
           />
         ) : (
           <div className="absolute inset-0 grid place-items-center">
-            <span className="grid size-24 place-items-center rounded-full bg-white font-display text-3xl text-accent">
+            <span className="grid size-24 place-items-center rounded-dot bg-white font-display text-3xl text-accent">
               {initials(person.name)}
             </span>
           </div>
@@ -80,7 +80,7 @@ export function TeamCard({ person, dict }: { person: Team; dict: Dictionary }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${dict.common.linkedin} · ${person.name}`}
-            className="absolute top-4 right-4 grid size-10 place-items-center rounded-full bg-white text-ink shadow-sm hover:text-accent"
+            className="absolute top-4 right-4 grid size-10 place-items-center rounded-dot bg-white text-ink shadow-sm hover:text-accent"
           >
             <Icon name="linkedin" className="size-4" />
           </a>
@@ -96,7 +96,7 @@ export function TeamCard({ person, dict }: { person: Team; dict: Dictionary }) {
               <span
                 key={l}
                 title={dict.languageNames[l as keyof Dictionary['languageNames']]}
-                className="rounded-full bg-surface px-2.5 py-0.5 text-[0.65rem] font-semibold text-muted uppercase"
+                className="rounded-dot bg-surface px-2.5 py-0.5 text-[0.65rem] font-semibold text-muted uppercase"
               >
                 {l}
               </span>
@@ -116,8 +116,8 @@ export function PostCard({ post, locale, dict }: { post: Post; locale: Locale; d
     : null
   const category = dict.blog.categories[post.category as keyof Dictionary['blog']['categories']]
   return (
-    <Link href={href(locale, 'blog', post.slug ?? '')} className="group flex h-full flex-col rounded-[24px] bg-surface p-3">
-      <div className="relative aspect-[16/11] overflow-hidden rounded-[18px] bg-accent-soft">
+    <Link href={href(locale, 'blog', post.slug ?? '')} className="group flex h-full flex-col rounded-card bg-surface p-3">
+      <div className="relative aspect-[16/11] overflow-hidden rounded-card-sm bg-accent-soft">
         {hasMedia(post.cover) && (
           <MediaImage
             media={post.cover}

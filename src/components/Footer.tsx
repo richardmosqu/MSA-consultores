@@ -42,7 +42,7 @@ export function Footer({
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={k}
-                    className="grid size-10 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-ink"
+                    className="grid size-10 place-items-center rounded-dot bg-white/10 text-white transition hover:bg-white hover:text-ink"
                   >
                     <Icon name={k} className="size-4" />
                   </a>

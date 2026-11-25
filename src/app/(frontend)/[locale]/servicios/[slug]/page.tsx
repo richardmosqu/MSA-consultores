@@ -103,12 +103,12 @@ export default async function ServicePage({ params }: PageProps<'/[locale]/servi
             }`}
           >
             {service.features && service.features.length > 0 && (
-              <div className="rounded-[24px] bg-surface p-7 sm:p-8">
+              <div className="rounded-card bg-surface p-7 sm:p-8">
                 <p className="pill-label">{dict.common.whatWeDo}</p>
                 <ul className="mt-6 space-y-4">
                   {service.features.map((f, i) => (
                     <li key={f.id ?? i} className="flex gap-3 text-[0.95rem] text-ink">
-                      <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-accent text-white">
+                      <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-dot bg-accent text-white">
                         <Icon name="chevron" className="size-3" strokeWidth={2.4} />
                       </span>
                       {f.text}
@@ -117,7 +117,7 @@ export default async function ServicePage({ params }: PageProps<'/[locale]/servi
                 </ul>
               </div>
             )}
-            <div className="on-dark rounded-[24px] bg-accent p-7 text-white sm:p-8">
+            <div className="on-dark rounded-card bg-accent p-7 text-white sm:p-8">
               <p className="font-display text-2xl leading-tight">{dict.common.bookThisService}</p>
               <p className="mt-3 text-sm leading-relaxed text-white/80">{dict.contact.optionBookText}</p>
               <div className="mt-7 flex flex-wrap items-center gap-3">

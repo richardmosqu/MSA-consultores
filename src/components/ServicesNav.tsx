@@ -18,12 +18,12 @@ export function ServicesBar({ links, current, label }: { links: ServiceLink[]; c
                 <Link
                   href={l.href}
                   aria-current={active ? 'page' : undefined}
-                  className={`inline-flex items-center gap-2 rounded-full py-1.5 pr-4 pl-1.5 text-sm font-medium whitespace-nowrap shadow-[0_6px_20px_-12px_rgba(12,26,71,0.35)] transition ${
+                  className={`inline-flex items-center gap-2 rounded-dot py-1.5 pr-4 pl-1.5 text-sm font-medium whitespace-nowrap shadow-[0_6px_20px_-12px_rgba(12,26,71,0.35)] transition ${
                     active ? 'bg-ink text-white' : 'bg-white text-ink ring-1 ring-line hover:ring-accent'
                   }`}
                 >
                   <span
-                    className={`grid size-7 place-items-center rounded-full ${active ? 'bg-white/15 text-white' : 'bg-accent-soft text-accent'}`}
+                    className={`grid size-7 place-items-center rounded-dot ${active ? 'bg-white/15 text-white' : 'bg-accent-soft text-accent'}`}
                   >
                     <Icon name={l.icon} className="size-3.5" />
                   </span>
@@ -53,7 +53,7 @@ export function ServicesSideNav({
   allLabel: string
 }) {
   return (
-    <nav aria-label={title} className="rounded-[24px] bg-surface p-3">
+    <nav aria-label={title} className="rounded-card bg-surface p-3">
       <p className="px-3 pt-3 pb-4 text-xs font-semibold tracking-[0.12em] text-muted uppercase">{title}</p>
       <ul className="space-y-1">
         {links.map((l) => {
@@ -63,12 +63,12 @@ export function ServicesSideNav({
               <Link
                 href={l.href}
                 aria-current={active ? 'page' : undefined}
-                className={`flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium transition ${
+                className={`flex items-center gap-3 rounded-ui px-3 py-2.5 text-sm font-medium transition ${
                   active ? 'bg-white text-ink shadow-[0_6px_20px_-12px_rgba(12,26,71,0.35)]' : 'text-ink/75 hover:bg-white/60 hover:text-ink'
                 }`}
               >
                 <span
-                  className={`grid size-8 shrink-0 place-items-center rounded-full ${active ? 'bg-accent text-white' : 'bg-white text-accent'}`}
+                  className={`grid size-8 shrink-0 place-items-center rounded-dot ${active ? 'bg-accent text-white' : 'bg-white text-accent'}`}
                 >
                   <Icon name={l.icon} className="size-4" />
                 </span>
@@ -80,7 +80,7 @@ export function ServicesSideNav({
       </ul>
       <Link
         href={allHref}
-        className="mt-2 flex items-center justify-between rounded-2xl px-3 py-3 text-sm font-semibold text-ink hover:bg-white/60"
+        className="mt-2 flex items-center justify-between rounded-ui px-3 py-3 text-sm font-semibold text-ink hover:bg-white/60"
       >
         {allLabel}
         <Icon name="arrowUpRight" className="size-4" />
@@ -107,11 +107,11 @@ export function ServicesPager({
   const next = links[(i + 1) % links.length]
   return (
     <nav aria-label={prevLabel + ' / ' + nextLabel} className="grid gap-3 sm:grid-cols-2">
-      <Link href={prev.href} className="group rounded-[22px] bg-surface p-6 transition hover:bg-[#eceff5]">
+      <Link href={prev.href} className="group rounded-card bg-surface p-6 transition hover:bg-[#eceff5]">
         <span className="text-xs font-semibold tracking-[0.12em] text-muted uppercase">← {prevLabel}</span>
         <span className="mt-2 block font-display text-xl text-ink">{prev.label}</span>
       </Link>
-      <Link href={next.href} className="group rounded-[22px] bg-surface p-6 text-right transition hover:bg-[#eceff5]">
+      <Link href={next.href} className="group rounded-card bg-surface p-6 text-right transition hover:bg-[#eceff5]">
         <span className="text-xs font-semibold tracking-[0.12em] text-muted uppercase">{nextLabel} →</span>
         <span className="mt-2 block font-display text-xl text-ink">{next.label}</span>
       </Link>

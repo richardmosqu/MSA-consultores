@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { localeLabels, locales, switchLocalePath, type Locale } from '@/i18n/config'
 import type { ResolvedLink } from '@/lib/links'
 import type { NavItem } from '@/lib/site'
@@ -13,6 +13,14 @@ import { Logo } from './Logo'
 function rememberLocale(l: Locale) {
   document.cookie = `NEXT_LOCALE=${l}; path=/; max-age=31536000; samesite=lax`
 }
+
+// Propuesta de diseño activa (atributo data-design de <html>, ver DesignSwitcher).
+function subscribeDesign(cb: () => void) {
+  const obs = new MutationObserver(cb)
+  obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-design'] })
+  return () => obs.disconnect()
+}
+const getDesign = () => document.documentElement.getAttribute('data-design')
 
 type Labels = {
   book: string
@@ -92,16 +100,17 @@ export function Header({
   }
 
   const megaItem = items.find((i) => i.href === mega && i.children?.length)
+  const design = useSyncExternalStore(subscribeDesign, getDesign, () => null)
   // Sobre el hero el header es transparente; al bajar (o con un menú abierto) se vuelve una barra blanca.
-  const solid = scrolled || open || !!megaItem
+  const solid = scrolled || open || !!megaItem || design === 'editorial'
   const linkBase = solid ? 'text-ink/80 hover:text-ink' : 'text-white/85 hover:text-white'
   const linkActive = solid ? 'text-accent' : 'text-white'
 
   return (
-    <header ref={headerRef} className="fixed inset-x-0 top-0 z-50 px-2 pt-2 sm:px-3 sm:pt-3">
+    <header ref={headerRef} className="header-wrap fixed inset-x-0 top-0 z-50">
       <div
-        className={`mx-auto flex h-16 max-w-[calc(80rem+2rem)] items-center justify-between gap-4 rounded-full pr-2 pl-5 transition duration-300 sm:h-[4.5rem] sm:pl-7 ${
-          solid ? 'bg-white/95 text-ink shadow-[0_12px_40px_-20px_rgba(12,26,71,0.45)] backdrop-blur' : 'text-white'
+        className={`header-bar mx-auto flex h-16 items-center justify-between gap-4 pr-2 pl-5 transition duration-300 sm:h-[4.5rem] sm:pl-7 ${
+          solid ? 'is-solid bg-white/95 text-ink backdrop-blur' : 'text-white'
         }`}
       >
         <Link href={`/${locale}`} aria-label={labels.home} className="shrink-0 text-[14px] sm:text-[15px]">
@@ -117,7 +126,7 @@ export function Header({
                   aria-expanded={mega === item.href}
                   aria-controls="mega-menu"
                   onClick={() => setMega((m) => (m === item.href ? null : item.href))}
-                  className={`flex items-center gap-1 rounded-full px-3 py-2 text-[0.84rem] font-medium transition ${
+                  className={`flex items-center gap-1 rounded-dot px-3 py-2 text-[0.84rem] font-medium transition ${
                     isActive(item.href) || mega === item.href ? linkActive : linkBase
                   }`}
                 >
@@ -130,7 +139,7 @@ export function Header({
                 key={item.href}
                 href={item.href}
                 aria-current={isActive(item.href) ? 'page' : undefined}
-                className={`rounded-full px-3 py-2 text-[0.84rem] font-medium transition ${
+                className={`rounded-dot px-3 py-2 text-[0.84rem] font-medium transition ${
                   isActive(item.href) ? linkActive : linkBase
                 }`}
               >
@@ -143,7 +152,7 @@ export function Header({
         <div className="flex items-center gap-2">
           <details className="group relative hidden sm:block">
             <summary
-              className={`flex h-10 cursor-pointer list-none items-center gap-1.5 rounded-full px-3.5 text-xs font-semibold uppercase [&::-webkit-details-marker]:hidden ${
+              className={`flex h-10 cursor-pointer list-none items-center gap-1.5 rounded-dot px-3.5 text-xs font-semibold uppercase [&::-webkit-details-marker]:hidden ${
                 solid ? 'bg-surface text-ink' : 'bg-white/15 text-white backdrop-blur'
               }`}
               aria-label={labels.language}
@@ -151,14 +160,14 @@ export function Header({
               <Icon name="globe" className="size-4" />
               {locale}
             </summary>
-            <ul className="absolute right-0 mt-2 w-40 overflow-hidden rounded-2xl bg-white p-1 text-sm text-ink shadow-xl ring-1 ring-line">
+            <ul className="absolute right-0 mt-2 w-40 overflow-hidden rounded-ui bg-white p-1 text-sm text-ink shadow-xl ring-1 ring-line">
               {locales.map((l) => (
                 <li key={l}>
                   <Link
                     href={switchLocalePath(pathname, l)}
                     hrefLang={l}
                     onClick={() => rememberLocale(l)}
-                    className={`block rounded-xl px-3 py-2 hover:bg-surface ${l === locale ? 'font-semibold text-accent' : ''}`}
+                    className={`block rounded-ui px-3 py-2 hover:bg-surface ${l === locale ? 'font-semibold text-accent' : ''}`}
                   >
                     {localeLabels[l]}
                   </Link>
@@ -179,7 +188,7 @@ export function Header({
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className={`grid size-11 place-items-center rounded-full xl:hidden ${
+            className={`grid size-11 place-items-center rounded-dot xl:hidden ${
               solid ? 'bg-surface text-ink' : 'bg-white/15 text-white backdrop-blur'
             }`}
             aria-expanded={open}
@@ -195,12 +204,12 @@ export function Header({
       {megaItem && (
         <div
           id="mega-menu"
-          className="mx-auto mt-2 hidden max-w-[calc(80rem+2rem)] rounded-[28px] bg-white p-3 text-ink shadow-[0_30px_60px_-30px_rgba(12,26,71,0.45)] ring-1 ring-line xl:block"
+          className="header-panel mt-2 hidden rounded-card bg-white p-3 text-ink shadow-[0_30px_60px_-30px_rgba(12,26,71,0.45)] ring-1 ring-line xl:block"
           onMouseEnter={() => openMega(megaItem.href)}
           onMouseLeave={scheduleClose}
         >
           <div className="grid grid-cols-12 gap-3">
-            <div className="col-span-3 flex flex-col rounded-[22px] bg-surface p-7">
+            <div className="col-span-3 flex flex-col rounded-card bg-surface p-7">
               <p className="pill-label self-start">{megaItem.label}</p>
               <p className="mt-5 text-sm leading-relaxed text-muted">{labels.servicesIntro}</p>
               <div className="mt-auto flex flex-col gap-3 pt-8">
@@ -220,11 +229,11 @@ export function Header({
                   <Link
                     href={child.href}
                     aria-current={isActive(child.href) ? 'page' : undefined}
-                    className={`group flex gap-4 rounded-2xl p-4 transition hover:bg-surface ${
+                    className={`group flex gap-4 rounded-ui p-4 transition hover:bg-surface ${
                       isActive(child.href) ? 'bg-surface' : ''
                     }`}
                   >
-                    <span className="grid size-10 shrink-0 place-items-center rounded-full bg-accent-soft text-accent transition group-hover:bg-accent group-hover:text-white">
+                    <span className="grid size-10 shrink-0 place-items-center rounded-dot bg-accent-soft text-accent transition group-hover:bg-accent group-hover:text-white">
                       <Icon name={child.icon} className="size-5" />
                     </span>
                     <span>
@@ -245,7 +254,7 @@ export function Header({
       <div
         id="mobile-menu"
         hidden={!open}
-        className="mt-2 max-h-[calc(100dvh-5.5rem)] overflow-y-auto rounded-[28px] bg-white text-ink shadow-2xl ring-1 ring-line xl:hidden"
+        className="header-panel mt-2 max-h-[calc(100dvh-5.5rem)] overflow-y-auto rounded-card bg-white text-ink shadow-2xl ring-1 ring-line xl:hidden"
       >
         <nav className="flex flex-col p-5" aria-label="Principal">
           {items.map((item) =>
@@ -263,22 +272,22 @@ export function Header({
                     onClick={() => setMobileSub((s) => (s === item.href ? null : item.href))}
                     aria-expanded={mobileSub === item.href}
                     aria-label={item.label}
-                    className="grid size-10 place-items-center rounded-full bg-surface"
+                    className="grid size-10 place-items-center rounded-dot bg-surface"
                   >
                     <Icon name="chevronDown" className={`size-4.5 transition ${mobileSub === item.href ? 'rotate-180' : ''}`} />
                   </button>
                 </div>
                 {mobileSub === item.href && (
-                  <ul className="mb-3 space-y-0.5 rounded-2xl bg-surface p-2">
+                  <ul className="mb-3 space-y-0.5 rounded-ui bg-surface p-2">
                     {item.children.map((child) => (
                       <li key={child.href}>
                         <Link
                           href={child.href}
-                          className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-[0.95rem] font-medium ${
+                          className={`flex items-center gap-3 rounded-ui px-3 py-2.5 text-[0.95rem] font-medium ${
                             isActive(child.href) ? 'bg-white text-accent' : ''
                           }`}
                         >
-                          <span className="grid size-8 place-items-center rounded-full bg-accent-soft text-accent">
+                          <span className="grid size-8 place-items-center rounded-dot bg-accent-soft text-accent">
                             <Icon name={child.icon} className="size-4" />
                           </span>
                           {child.label}
@@ -308,7 +317,7 @@ export function Header({
                 href={switchLocalePath(pathname, l)}
                 hrefLang={l}
                 onClick={() => rememberLocale(l)}
-                className={`rounded-full px-4 py-2 text-sm ${
+                className={`rounded-dot px-4 py-2 text-sm ${
                   l === locale ? 'bg-ink font-semibold text-white' : 'bg-surface text-ink'
                 }`}
               >

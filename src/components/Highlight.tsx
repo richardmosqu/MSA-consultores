@@ -8,11 +8,11 @@ export function Highlight({ text, dark = false }: { text?: string | null; dark?:
     <>
       {parts.map((part, i) =>
         part.startsWith('*') && part.endsWith('*') ? (
-          <span key={i} className={dark ? 'text-white' : 'text-accent'}>
+          <span key={i} className={`hl ${dark ? 'text-white' : 'text-accent'}`}>
             {part.slice(1, -1)}
           </span>
         ) : (
-          <span key={i} className={dark && hasHighlight ? 'text-white/60' : undefined}>
+          <span key={i} className={dark && hasHighlight ? 'hl-dim text-white/60' : undefined}>
             {part}
           </span>
         ),

@@ -68,7 +68,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
           role="dialog"
           aria-live="polite"
           aria-label="Cookies"
-          className="fixed inset-x-3 bottom-3 z-[60] mx-auto max-w-3xl rounded-[24px] bg-white p-5 text-sm text-ink shadow-[0_30px_60px_-20px_rgba(12,26,71,0.45)] ring-1 ring-line sm:inset-x-6 sm:bottom-6 sm:flex sm:items-center sm:gap-6"
+          className="fixed inset-x-3 bottom-3 z-[60] mx-auto max-w-3xl rounded-card bg-white p-5 text-sm text-ink shadow-[0_30px_60px_-20px_rgba(12,26,71,0.45)] ring-1 ring-line sm:inset-x-6 sm:bottom-6 sm:flex sm:items-center sm:gap-6"
         >
           <p className="leading-relaxed text-muted">
             {labels.text}{' '}

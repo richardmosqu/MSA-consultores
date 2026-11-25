@@ -74,7 +74,7 @@ export default async function PostPage({ params }: PageProps<'/[locale]/blog/[sl
 
       {hasMedia(post.cover) && (
         <div className="container-site -mt-6 sm:-mt-10">
-          <div className="relative aspect-[16/8] overflow-hidden rounded-3xl shadow-2xl">
+          <div className="relative aspect-[16/8] overflow-hidden rounded-ui shadow-2xl">
             <MediaImage media={post.cover} size="wide" priority sizes="(min-width: 1280px) 1200px, 100vw" />
           </div>
         </div>
@@ -89,7 +89,7 @@ export default async function PostPage({ params }: PageProps<'/[locale]/blog/[sl
               <h2 className="display-md mb-6 text-ink">{dict.common.gallery}</h2>
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {gallery.map((m) => (
-                  <div key={m.id} className="relative aspect-square overflow-hidden rounded-xl">
+                  <div key={m.id} className="relative aspect-square overflow-hidden rounded-ui">
                     <MediaImage media={m} size="card" sizes="(min-width: 640px) 33vw, 50vw" />
                   </div>
                 ))}
@@ -98,7 +98,7 @@ export default async function PostPage({ params }: PageProps<'/[locale]/blog/[sl
           )}
 
           {service && (
-            <div className="mt-14 flex flex-col items-start gap-5 rounded-2xl bg-surface p-7 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mt-14 flex flex-col items-start gap-5 rounded-ui bg-surface p-7 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-lg font-black uppercase text-ink">{service.title}</p>
               <ButtonLink
                 link={bookingLink(site.settings, site.locale, service.bookingUrl)}

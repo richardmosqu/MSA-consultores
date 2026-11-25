@@ -38,20 +38,18 @@ de cookies (Ley 81 de 2019).
 con las 7 áreas en el header (acordeón en móvil), migas de pan, lista lateral de áreas en cada servicio (barra deslizable en
 móvil), "área anterior / siguiente", columna de servicios en el footer y botón de agendar siempre visible.
 
-## 2b. Dirección visual (actualizada 25 nov)
+## 2b. Dirección visual: tres propuestas (25 nov)
 
-La primera propuesta (24 nov), muy cercana a las piezas de Instagram, se descartó por recargada. La dirección vigente sigue la
-referencia que compartió Richard (estilo "consultora sobria"):
+MSA recibe tres direcciones para elegir ([docs/propuestas](propuestas/), con PDF de presentación):
 
-- Fondos claros y mucho aire; secciones en paneles redondeados gris claro o azul noche, con margen al borde de la pantalla.
-- Portada con **foto a sangre** dentro de un marco redondeado, el menú encima y accesos a las áreas de servicio al pie.
-- Titulares de **peso regular** en minúscula (Outfit), texto en Manrope; nada de mayúsculas gruesas.
-- Etiquetas tipo píldora ("QUIÉNES SOMOS"), botones píldora con **círculo y flecha ↗**, tarjetas con esquinas de 24 px.
-- **Un solo color de acento: el azul de MSA** (donde la referencia usa verde lima) sobre azul noche y blancos.
-- Se mantiene el logotipo con serifa de MSA (provisional hasta recibir el vector).
+- **A · Impacto** — fiel a su Instagram: azul noche y eléctrico, mayúsculas gruesas, diagonales y stickers.
+- **B · Cercana** — siguiendo la referencia que compartió Richard: fondos claros, paneles y tarjetas redondeadas,
+  etiquetas tipo píldora, botones con flecha, titulares de peso regular; el azul de MSA como único acento.
+- **C · Editorial** — serif en titulares (eco del logotipo) con cursivas, esquinas rectas, líneas finas, fondo papel,
+  portada clara tipo revista y secciones numeradas.
 
-La dirección depende de **fotos reales**: portada (equipo en la oficina), tarjetas de "Quiénes somos" y servicios, y perfiles.
-Sin fotos el sitio funciona y se ve ordenado, pero la portada queda como un panel azul liso.
+Las tres usan el mismo contenido, navegación, panel y funciones. Todas dependen de **fotos reales** (portada, ambiente y
+retratos); sin ellas se ven ordenadas pero con espacios reservados.
 
 ## 3. Stack propuesto
 

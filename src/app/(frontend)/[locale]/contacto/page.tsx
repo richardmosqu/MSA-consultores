@@ -60,9 +60,9 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
             return (
               <div
                 key={o.title}
-                className={`flex min-h-[260px] flex-col rounded-[24px] p-6 sm:p-7 ${accent ? 'on-dark bg-accent text-white' : 'bg-surface'}`}
+                className={`flex min-h-[260px] flex-col rounded-card p-6 sm:p-7 ${accent ? 'on-dark bg-accent text-white' : 'bg-surface'}`}
               >
-                <span className={`grid size-11 place-items-center rounded-full ${accent ? 'bg-white text-accent' : 'bg-accent text-white'}`}>
+                <span className={`grid size-11 place-items-center rounded-dot ${accent ? 'bg-white text-accent' : 'bg-accent text-white'}`}>
                   <Icon name={o.icon} className="size-5" />
                 </span>
                 <h2 className={`mt-6 font-display text-xl leading-tight ${accent ? 'text-white' : 'text-ink'}`}>{o.title}</h2>
@@ -105,7 +105,7 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
           </div>
 
           <aside className="space-y-4 lg:col-span-5">
-            <div className="on-dark rounded-[24px] bg-ink p-7 text-white sm:p-8">
+            <div className="on-dark rounded-card bg-ink p-7 text-white sm:p-8">
               <p className="pill-label-dark">{c.infoTitle}</p>
               <p className="mt-5 font-display text-xl leading-snug">{settings.officeName || c.mainOffice}</p>
               <dl className="mt-6 space-y-4 text-sm text-white/75">
@@ -169,7 +169,7 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
             </div>
 
             {settings.offices && settings.offices.length > 0 && (
-              <div className="rounded-[24px] bg-surface p-7 sm:p-8">
+              <div className="rounded-card bg-surface p-7 sm:p-8">
                 <p className="pill-label">{c.regionalTitle}</p>
                 <ul className="mt-6 divide-y divide-line">
                   {settings.offices.map((o, i) => (
@@ -177,12 +177,12 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
                       <p className="flex flex-wrap items-center gap-2 font-display text-lg text-ink">
                         {o.name}
                         {o.status === 'soon' && (
-                          <span className="rounded-full bg-accent-soft px-2.5 py-0.5 font-sans text-[0.65rem] font-semibold text-accent uppercase">
+                          <span className="rounded-dot bg-accent-soft px-2.5 py-0.5 font-sans text-[0.65rem] font-semibold text-accent uppercase">
                             {c.soon}
                           </span>
                         )}
                         {o.status === 'international' && (
-                          <span className="rounded-full bg-white px-2.5 py-0.5 font-sans text-[0.65rem] font-semibold text-muted uppercase ring-1 ring-line">
+                          <span className="rounded-dot bg-white px-2.5 py-0.5 font-sans text-[0.65rem] font-semibold text-muted uppercase ring-1 ring-line">
                             {c.international}
                           </span>
                         )}
